@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styles from '../Mcss/Login.module.css'
 
 const Login = () => {
-  const [active, setActive] = useState(false)
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -10,6 +9,8 @@ const Login = () => {
       document.body.style.overflow = 'auto'
     }
   }, [])
+
+  const [active, setActive] = useState(false)
 
   const [showPassword, setShowPassword] = useState(false)
   const [showPasswordAgain, setShowPasswordAgain] = useState(false)

@@ -1,6 +1,4 @@
-body{
-        background-image: url("../public/HomeBG.png");
-}
+
 .HomeMain{
     display: flex;
     justify-content: center;
@@ -10,6 +8,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
+    background-image: url("../public/HomeBG.png");
 }
 .WineBottle{
     transform: scale(10%);
