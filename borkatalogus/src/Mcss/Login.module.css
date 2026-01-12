@@ -2,6 +2,8 @@
     .container h1 {
         font-weight: bold;
         margin: 0;
+        color: #8B1E3F;
+        margin-bottom: 3vh;
     }
 
     .container h2 {
@@ -30,9 +32,9 @@
         color: #FFFFFF;
         font-size: 12px;
         font-weight: bold;
-        padding: 12px 45px;
+        margin-top: 2vh;
+        padding: 1vw 3vw;
         letter-spacing: 1px;
-        text-transform: uppercase;
         transition: transform 80ms ease-in;
     }
 

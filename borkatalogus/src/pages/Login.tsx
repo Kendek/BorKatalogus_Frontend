@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../Mcss/Login.module.css'
 
 const Login = () => {
   const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [])
 
   return (
     <div className={styles.wrapper}>
@@ -27,13 +34,12 @@ const Login = () => {
         <div className={styles.overlaycontainer}>
           <div className={styles.overlay}>
             <div className={`${styles.overlaypanel} ${styles.overlayleft}`}>
-              <h1>Welcome Back!</h1>
-              <p>To keep connected with us please login with your personal info</p>
+              <p>If you already have an account, you can log in here.</p>
               <button className={styles.ghost}  onClick={() => setActive(false)}>Sign In</button>
             </div>
             <div className={`${styles.overlaypanel} ${styles.overlayright}`}>
-              <h1>Hello, Friend!</h1>
-              <p>Enter your personal details and start journey with us</p>
+              <h2>Welcome to the Winelly!</h2>
+              <p>If you don't have an account yet, you can sign up here.</p>
               <button className={styles.ghost}  onClick={() => setActive(true)}>Sign Up</button>
             </div>
           </div>
