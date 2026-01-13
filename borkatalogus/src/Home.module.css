@@ -17,16 +17,21 @@
 }
 .TextContainer
 {
+    
     margin-left: 40%;
+    margin-bottom: 10%;
     color: white;
     text-align: center;
     text-shadow: 2px 2px black;
     font-size: larger;
-    width: 40vw;
+    width: 35vw;
     h2{
         text-decoration: underline;
     }
     h1{
         font-weight: bold;
+    }
+    h2,h1,h3{
+        padding: 10px;
     }
 }
