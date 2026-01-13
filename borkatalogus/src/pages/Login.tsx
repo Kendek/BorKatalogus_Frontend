@@ -10,6 +10,19 @@ const Login = () => {
     }
   }, [])
 
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+  const CheckSignUpInputs = () => {
+    event?.preventDefault()
+    if(name && email && password && passwordAgain != "")
+    {
+      if(!emailRegex.test(email))
+      {
+        return 'Please enter valid email'
+      }
+    }
+  }
+
   const [active, setActive] = useState(false)
 
   const [showPassword, setShowPassword] = useState(false)
@@ -51,7 +64,7 @@ const Login = () => {
                  <i className={showPasswordAgain ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"}></i>
               </span>
             </div>
-            <button>Sign Up</button>
+            <button onClick={() => CheckSignUpInputs()}>Sign Up</button>
           </form>
         </div>
         <div className={`${styles.formcontainer} ${styles.signincontainer}`}>
