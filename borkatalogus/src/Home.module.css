@@ -11,12 +11,6 @@
     gap: 0;
     flex-direction: column;
 }
-.HomeSecond{
-
-    background-color: #23020A;
-    width: 100%;
-    height: 100vh;
-}
 .HomeFirst{
     display: flex;
     justify-content: center;
@@ -58,4 +52,64 @@
  .Stars{
     font-size: 150%;
  }
+}
+.HomeSecond{
+
+    background-color: #23020A;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.Title{
+    color: white;
+    margin-top: 2%;
+    margin-bottom:2%;
+    font-size: xx-large;
+    text-shadow: 2px 2px black;
+    text-decoration: underline;
+}
+.FavCardContainer{
+    display: flex;
+    width: 90%;
+    gap: 5%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+}
+.FavCardUp
+{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 95%;
+    background-color:  white;
+    margin-top: 4%;
+    border-radius: 1%;
+}
+.FavCardDown
+{
+    border-radius: 1%;
+    margin-bottom: 4%;
+    width: 20%;
+    height: 95%;
+    background-color:  white;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.CardImg{
+    background-color: red;
+    width: 100%;
+    height: 30%;
+    background-image: url("");
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.CardDesc{
+    width: 18%;
+    height: 40%;
+    border-top: black 4px solid;
+    background-color: white;
+    position: absolute;
+    margin-top: 10%;
 }
