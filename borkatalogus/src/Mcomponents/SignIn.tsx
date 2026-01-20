@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import style from "../Mcss/Forms.module.css"
+import style from "../Mcss/SuLiForms.module.css"
 
 type Props = {
   flipForm: () => void

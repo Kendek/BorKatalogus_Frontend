@@ -145,7 +145,7 @@
     margin-top: 5vh;
     display: flex;
     flex-direction: column;
-    gap: 3vh;
+    gap: 4vh;
 }
 
 .formSwitch {
@@ -183,3 +183,23 @@
     }
 }
 /*---------------*/
+
+/* Mobile */
+@media (max-width: 768px) 
+{
+    .formSide
+    {
+        min-height: 500px;
+    }
+    .formHeader 
+    {
+        margin-bottom: 0px;
+    }
+    .formActions 
+    {
+        margin-top: 3vh;
+        gap: 1vh;
+    }
+
+}
+/* ------------- */

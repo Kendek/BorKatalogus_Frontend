@@ -52,7 +52,6 @@
 }
 
 /* actives */
-
 .usericonlogin, .carticonactive
 {
     color: white;
@@ -76,9 +75,9 @@
   border-radius: 30px;
   transition: 1s;
 }
+/* -------- /
 
-/* Mobile */
-
+/* Navbar on Mobile */
 .mobile
 {
   display: none;
@@ -88,7 +87,9 @@
 {
   color: #8B1E3F;
 }
+/* -------- */
 
+/* Mobile */
 @media screen and (max-width: 768px)
 {
   .navlinks
@@ -144,4 +145,10 @@
     font-size: 24px;
     cursor: pointer;
   }
+
+  .logo
+  {
+    max-width: 130px;
+  }
 }
+/* -------- */

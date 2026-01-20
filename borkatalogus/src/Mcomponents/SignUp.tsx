@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from "../Mcss/Forms.module.css"
+import styles from "../Mcss/SuLiForms.module.css"
 
 
 type Props = {

@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
     padding: 10px;
     border: 3px solid #ccc;
     border-radius: 5px;
@@ -15,8 +15,6 @@
 {
     flex: 0 0 35%;
     display: flex;
-    align-items: center;
-    justify-content: center;
     height: 100%;
 }
 
@@ -85,3 +83,25 @@
     transform: translateY(0);
 }
 
+/* Mobile */
+@media (max-width: 768px) 
+{
+    .singleItem
+    {
+        min-width: 250px;
+        gap: 15px;
+    }
+    .itemRating p
+    {
+        font-size: 12px;
+    }
+    .itemRating span
+    {
+        font-size: 16px;
+    }
+    .itemBtn
+    {
+        width: 90%;
+    }
+}
+/* ------------ */
