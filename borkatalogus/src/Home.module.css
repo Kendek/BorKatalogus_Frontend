@@ -1,5 +1,23 @@
+::-webkit-scrollbar{
+    display: none;
+}
 
-.HomeMain{
+
+.HomeMain
+{
+    scrollbar-width: none;
+    display: flex;
+    width: 100%;
+    gap: 0;
+    flex-direction: column;
+}
+.HomeSecond{
+
+    background-color: #23020A;
+    width: 100%;
+    height: 100vh;
+}
+.HomeFirst{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,21 +35,27 @@
 }
 .TextContainer
 {
-    
     margin-left: 40%;
-    margin-bottom: 10%;
     color: white;
     text-align: center;
     text-shadow: 2px 2px black;
     font-size: larger;
-    width: 35vw;
+    width: 40vw;
     h2{
         text-decoration: underline;
     }
     h1{
         font-weight: bold;
     }
-    h2,h1,h3{
-        padding: 10px;
-    }
+}
+@media screen and (max-width: 768px)
+{
+ .TextContainer{
+    width: 80vw;
+    margin-left: 0%;
+    font-size: large;
+ }
+ .Stars{
+    font-size: 150%;
+ }
 }
