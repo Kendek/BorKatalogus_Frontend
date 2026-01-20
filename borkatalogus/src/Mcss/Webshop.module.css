@@ -1,0 +1,55 @@
+.mainDiv {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #F9F6F2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 90%;
+    height: auto;
+    margin-top: 8vh;
+    min-height: 680px;
+    background-color: white;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 80px;
+    padding: 30px;
+    color: #8B1E3F;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 20px;
+    border-bottom: solid 4px #8B1E3F;
+}
+
+.header p
+{
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.header p:hover
+{
+    color: #dc2f63;
+}
+
+.itemsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    padding: 10px;
+    gap: 30px;
+    margin: 30px;
+    justify-content: center;
+}

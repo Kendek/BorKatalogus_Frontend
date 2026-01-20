@@ -6,6 +6,10 @@
   color: #fff;
   padding: 1rem;
   border-bottom: solid 4px #8B1E3F;
+  top: 0;
+  position: sticky;
+  overflow: hidden;
+  z-index: 5000;
 }
 
 .logo {
