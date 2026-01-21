@@ -1,7 +1,11 @@
 import React from 'react'
 import style from '../Mcss/Items.module.css'
+import { Rating } from 'primereact/rating';
 
 const WebshopItem = () => {
+
+
+
     return (
         <div className={style.singleItem}>
             <div className={style.imageWrapper}>
@@ -11,7 +15,9 @@ const WebshopItem = () => {
                 <div className={style.itemTitle}>
                     <span>Title</span>
                     <div className={style.itemRating}>
-                        <p>⭐⭐⭐⭐⭐</p>
+                        <p>
+                            <Rating value={5} readOnly cancel={false} />
+                        </p>
                         <span>4.5</span>
                     </div>
                 </div>

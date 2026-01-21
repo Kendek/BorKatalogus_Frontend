@@ -52,6 +52,7 @@
     font-size: clamp(14px, 1.2vw, 18px);
 }
 
+
 .itemInfos {
     display: flex;
     flex-direction: column;
