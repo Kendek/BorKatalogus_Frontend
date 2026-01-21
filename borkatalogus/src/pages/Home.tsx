@@ -1,5 +1,5 @@
 import styles from "../Home.module.css"
-import HomeSecondPart from "./HomeSecondPart"
+import HomeSecondPart from "../Ksrc/HomeSecondPart"
 import {Rating} from "primereact/rating"
 const Home = () => {
   return (
