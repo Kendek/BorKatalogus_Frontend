@@ -1,24 +1,25 @@
 import styles from "../Home.module.css"
-
+import FavCard from "./FavCard"
 const HomeSecondPart = () => {
   return (
         <div className={styles.HomeSecond}>
-        <h1 className={styles.Title}>------ Our best rated Wines! ------</h1>
+          <div className={styles.FlexBox}>
+            <div className={styles.LineDecor}></div>
+            <span className={styles.Title}>Our best rated Wines!</span>
+            <div className={styles.LineDecor}></div>
+          </div>
+      
 
         <div className={styles.FavCardContainer}>
 
-            <div className={styles.FavCardUp} >
-              <div className={styles.ImgBg}>
-                    <img src="WineBottle.png" alt="" />
-              </div>
-                <div className={styles.CardDesc}>
-                  <h1 className={styles.CardTitle}>Badenhorst Secateurs</h1>
-                  <span className={styles.CardRating}>4.7 / 5 ⭐</span> <span className={styles.CardPrice}>189.99 $</span>
-                </div>
-            </div>
+          <FavCard classname="FavCardUp"></FavCard>
+          <FavCard classname="FavCardDown"></FavCard>
+          <FavCard classname="FavCardUp"></FavCard>
+          <FavCard classname="FavCardDown"></FavCard>
+
+        </div>
 
             
-        </div>
 
         
       </div>
