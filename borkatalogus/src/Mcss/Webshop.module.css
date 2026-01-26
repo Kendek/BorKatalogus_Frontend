@@ -16,11 +16,6 @@
     border-radius: var(--container-radius);
 }
 
-.container.flipped
-{
-    animation: slideOutRight 0.5s ease forwards;
-}
-
 .contentArea {
     display: flex;
     gap: 100px;
@@ -94,6 +89,10 @@
     padding-bottom: 8px;
     font-weight: 700;
 }
+.filterTitle span
+{
+    cursor: pointer;
+}
 
 .filterTypes {
     display: flex;
@@ -122,27 +121,6 @@
 
 .filterPrice p {
     text-align: center;
-}
-
-.filterBtn {
-    background-color: var(--primary-colour);
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: var(--inputs-radius);
-    font-size: var(--label-font);
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.filterBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px #8e183b39;
-    background-color: var(--primary-light-colour);
-}
-
-.filterBtn:active {
-    transform: translateY(0);
 }
 
 .filterToggle {

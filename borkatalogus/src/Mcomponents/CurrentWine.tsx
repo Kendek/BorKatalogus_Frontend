@@ -6,20 +6,35 @@ import { Link } from 'react-router-dom';
 
 const CurrentWine = () => {
 
-  const {wines, currentWineId} = useContext(WineContext);
+  const { wines, currentWineId } = useContext(WineContext);
   const wine = wines.find(w => w.id === currentWineId);
 
   useEffect(() => {
-      document.body.style.overflow = "hidden";
-  
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        document.body.style.overflow = "auto";
+      } else {
+        document.body.style.overflow = "hidden";
+        window.scrollTo(0, 0);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
     return () => {
+      window.removeEventListener("resize", handleResize);
       document.body.style.overflow = "auto";
     };
   }, []);
 
+
   return (
     <div className={style.mainDiv}>
       <div className={style.container}>
+        <div className={style.backRow}>
+          <Link to={"/webshop"}><button className={style.backBtn}>Back</button></Link>
+        </div>
         <div className={style.wineLeftSide}>
           <img src="wineTest.png" alt="" />
         </div>
@@ -40,7 +55,7 @@ const CurrentWine = () => {
           </div>
           <div className={style.wineDescription}>
             <p>
-             {wine?.description}
+              {wine?.description}
             </p>
           </div>
           <div className={style.wineDetails}>

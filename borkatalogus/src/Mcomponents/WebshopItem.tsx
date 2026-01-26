@@ -3,18 +3,21 @@ import style from '../Mcss/Items.module.css'
 import { Link } from 'react-router-dom'
 import { WineContext, type Wine } from '../Mcontext/WineContextProvider';
 
-const WebshopItem = ({switchPage} : any) => {
+const WebshopItem = ({filteredWines} : {filteredWines : Wine[]}) => {
 
-    const { wines, setCurrentWineId } = useContext(WineContext);
+    const { setCurrentWineId, setCartItems, cart } = useContext(WineContext);
 
-    const handleAddToCart = (e: React.MouseEvent) => {
+    const handleAddToCart = (e: React.MouseEvent, wineToCart: Wine) => {
         e.stopPropagation();
         e.preventDefault();
+
+        setCartItems(prev => [...prev, wineToCart]);
+        
+        console.log(cart)
     };
 
     const handleClick = (e: React.MouseEvent, wine: Wine) => 
     { 
-        switchPage(true)
         setCurrentWineId(wine.id)
 
         setTimeout(() => { 
@@ -23,7 +26,7 @@ const WebshopItem = ({switchPage} : any) => {
         
 
     return (
-        wines.map((wine, index) => (
+        filteredWines.map((wine, index) => (
             <Link to={"/currentWine"}>
                 <div className={style.singleItem} style={{ "--i": index } as any} onClick={(e) => handleClick(e,wine)}>
                     <div className={style.imageWrapper}>
@@ -39,7 +42,7 @@ const WebshopItem = ({switchPage} : any) => {
                                     </div>
                                 </div>
                                 <div>
-                                    <button className={style.itemBtn} onClick={handleAddToCart}><i className="fa-solid fa-cart-shopping" /></button>
+                                    <button className={style.itemBtn} onClick={(e) => handleAddToCart(e, wine)}><i className="fa-solid fa-cart-shopping" /></button>
                                 </div>
                             </div>
                         </div>

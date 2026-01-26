@@ -7,7 +7,7 @@ const dataWine = [
     "name": "Sauska Cabernet Sauvignon",
     "type": "red wine",
     "description": "Full-bodied red wine with rich aroma and balanced tannins.",
-    "taste": "dry",
+    "taste": "sweet",
     "year": 2024,
     "price": 3800,
     "alcoholContent": 14,
@@ -50,7 +50,7 @@ const dataWine = [
     "name": "Tokaji Aszú 5 Puttonyos",
     "type": "dessert wine",
     "description": "Sweet wine with honey and apricot notes.",
-    "taste": "sweet",
+    "taste": "semi-sweet",
     "year": 2018,
     "price": 10500,
     "alcoholContent": 11,
@@ -106,7 +106,7 @@ const dataWine = [
     "name": "St. Andrea Nagy-Eged Bikavér",
     "type": "red wine",
     "description": "Complex Egri Bikavér with dark fruit aromas.",
-    "taste": "dry",
+    "taste": "semi-dry",
     "year": 2021,
     "price": 5200,
     "alcoholContent": 13.8,
@@ -135,7 +135,7 @@ const dataWine = [
     "name": "Laposa Kéknyelű",
     "type": "white wine",
     "description": "Rare Hungarian variety with volcanic minerality.",
-    "taste": "dry",
+    "taste": "semi-dry",
     "year": 2022,
     "price": 4700,
     "alcoholContent": 13,
@@ -168,13 +168,16 @@ export type WineContextType = {
   wines: Wine[];
   currentWineId: number | null; 
   setCurrentWineId: (id: number | null) => void;
+  cart: Wine[];
+  setCartItems: React.Dispatch<React.SetStateAction<Wine[]>>;
 };
 
-export const WineContext = createContext<WineContextType>({ wines: [], currentWineId: null, setCurrentWineId: () => {} });
+export const WineContext = createContext<WineContextType>({ wines: [], currentWineId: null, setCurrentWineId: () => {}, cart: [], setCartItems: () => {} });
 
 export function WineContextProvider({ children }: { children: React.ReactNode }) {
   const [datas, setDatas] = useState([]);
   const [currentWineId, setCurrentWineId] = useState<number | null>(null);
+  const [cartItems, setCartItems] = useState<Wine[]>([])
 
   useEffect(() => { 
     async function fetchData() { 
@@ -185,7 +188,7 @@ export function WineContextProvider({ children }: { children: React.ReactNode })
   }, []);
 
   return (
-    <WineContext.Provider value={{ wines: dataWine, currentWineId, setCurrentWineId}}>
+    <WineContext.Provider value={{ wines: dataWine, currentWineId, setCurrentWineId, cart: cartItems, setCartItems}}>
       {children}
     </WineContext.Provider>
   )
