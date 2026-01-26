@@ -1,34 +1,30 @@
 import React, { useContext, useState } from 'react'
-import style from '../Mcss/Items.module.css'
+import style from '../Mcss/WebshopItem.module.css'
 import { Link } from 'react-router-dom'
 import { WineContext, type Wine } from '../Mcontext/WineContextProvider';
+import { useNavigate } from "react-router-dom";
 
 const WebshopItem = ({filteredWines} : {filteredWines : Wine[]}) => {
 
-    const { setCurrentWineId, setCartItems, cart } = useContext(WineContext);
+    const { setCurrentWineId, setCartItems} = useContext(WineContext);
+    const navigate = useNavigate();
 
     const handleAddToCart = (e: React.MouseEvent, wineToCart: Wine) => {
         e.stopPropagation();
-        e.preventDefault();
 
         setCartItems(prev => [...prev, wineToCart]);
-        
-        console.log(cart)
     };
 
-    const handleClick = (e: React.MouseEvent, wine: Wine) => 
+    const handleClick = (wine: Wine) => 
     { 
-        setCurrentWineId(wine.id)
-
-        setTimeout(() => { 
-           e.preventDefault();
-        }, 300); };
+        setCurrentWineId(wine.id);
+        navigate("/currentWine");
+    }
         
 
     return (
         filteredWines.map((wine, index) => (
-            <Link to={"/currentWine"}>
-                <div className={style.singleItem} style={{ "--i": index } as any} onClick={(e) => handleClick(e,wine)}>
+                <div className={style.singleItem} style={{ "--i": index } as any} onClick={() => handleClick(wine)}>
                     <div className={style.imageWrapper}>
                         <img src="wineTest.png" alt="" />
                         <div className={style.overlay}>
@@ -48,7 +44,6 @@ const WebshopItem = ({filteredWines} : {filteredWines : Wine[]}) => {
                         </div>
                     </div>
                 </div>
-            </Link>
         ))
     )
 }

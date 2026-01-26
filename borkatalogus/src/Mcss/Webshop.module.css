@@ -115,7 +115,7 @@
     flex-direction: column;
     gap: 14px;
     justify-content: flex-start;
-    font-size: 16px;
+    font-size: var(--label-font);
     font-weight: 600;
 }
 

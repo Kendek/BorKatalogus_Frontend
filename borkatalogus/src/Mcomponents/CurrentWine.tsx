@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import style from '../Mcss/CurrentWine.module.css'
 import { Rating } from 'primereact/rating';
-import { WineContext } from '../Mcontext/WineContextProvider';
+import { WineContext, type Wine } from '../Mcontext/WineContextProvider';
 import { Link } from 'react-router-dom';
 
 const CurrentWine = () => {
 
-  const { wines, currentWineId } = useContext(WineContext);
+  const { wines, currentWineId, setCartItems} = useContext(WineContext);
   const wine = wines.find(w => w.id === currentWineId);
 
   useEffect(() => {
@@ -28,6 +28,14 @@ const CurrentWine = () => {
     };
   }, []);
 
+  const handleAddToCart = (addWineToCart : Wine) => {
+    setCartItems(prev => [...prev, addWineToCart])
+  }
+
+  if (!wine) 
+  {
+    return undefined;
+  }
 
   return (
     <div className={style.mainDiv}>
@@ -77,7 +85,7 @@ const CurrentWine = () => {
             </div>
           </div>
           <div className={style.wineBtn}>
-            <button>Add to Cart</button>
+            <button onClick={() => handleAddToCart(wine)}>Add to Cart</button>
           </div>
         </div>
       </div>

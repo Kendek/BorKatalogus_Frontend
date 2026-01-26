@@ -40,7 +40,7 @@ const Navbar = () => {
                 <Link to="/map" className={location.pathname === "/map" ? styles.pageLinkactive : styles.pageLink} onClick={()=> {setClikced(false)}}>Map</Link>
             </li>
             <li>
-                <Link to="/webshop" className={ location.pathname === "/webshop" || location.pathname.startsWith("/currentWine") ? styles.pageLinkactive : styles.pageLink } onClick={()=> {setClikced(false)}}>Webshop</Link>
+                <Link to="/webshop" className={ location.pathname === "/webshop" || location.pathname.startsWith("/currentWine") || location.pathname.startsWith("/review")  ? styles.pageLinkactive : styles.pageLink } onClick={()=> {setClikced(false)}}>Webshop</Link>
             </li>
             </ul>
         </div>
