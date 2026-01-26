@@ -31,6 +31,11 @@
 }
 .TextContainer
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
     margin-left: 40%;
     color: white;
     text-align: center;
@@ -52,6 +57,8 @@
     font-size: large;
  }
  .Stars{
+    color: gold;
+    background-color: gold;
     font-size: 150%;
  }
  .FavCardContainer{
@@ -185,4 +192,9 @@
 
 .UnderLine{
     text-decoration: underline;
+}
+
+.White{
+    border: 2px white solid;
+    width: 80%;
 }
