@@ -16,6 +16,11 @@
     border-radius: var(--container-radius);
 }
 
+.container.flipped
+{
+    animation: slideOutRight 0.5s ease forwards;
+}
+
 .contentArea {
     display: flex;
     gap: 100px;
@@ -131,7 +136,13 @@
 }
 
 .filterBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px #8e183b39;
     background-color: var(--primary-light-colour);
+}
+
+.filterBtn:active {
+    transform: translateY(0);
 }
 
 .filterToggle {
@@ -215,8 +226,15 @@
     }
 }
 
+@keyframes slideOutRight {
+    to {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+}
+
 .filterBlock:nth-child(3) {
-    animation-delay: 0.0s;
+    animation-delay: 0.30s;
 }
 
 .filterBlock:nth-child(2) {
@@ -224,7 +242,7 @@
 }
 
 .filterBlock:nth-child(1) {
-    animation-delay: 0.30s;
+    animation-delay: 0s;
 }
 
 /* ---------- */

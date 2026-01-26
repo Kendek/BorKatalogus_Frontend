@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Cart from './pages/Cart'
 import CurrentWine from './Mcomponents/CurrentWine'
 import WineContextProvider from './Mcontext/WineContextProvider'
+import Review from './pages/Review'
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/currentWine" element={<CurrentWine />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/review" element={<Review />} />
         </Routes>
       </BrowserRouter>
     </WineContextProvider>
