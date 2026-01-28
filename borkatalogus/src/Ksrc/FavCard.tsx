@@ -1,10 +1,15 @@
-import styles from "../Home.module.css"
+import styles from "../Kcss/Home.module.css"
 import '../Kcss/FavCard.css'
 import {Rating} from "primereact/rating"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const FavCard = (props: { classname: string }) => {
+     AOS.init({
+      duration:1000
+    });
   return (
-            <div className={props.classname} >
+            <div data-aos="fade-down" className={props.classname} >
               <div className={styles.ImgBg}>
                     <img src="WineBottle.png" alt="" />
               </div>
