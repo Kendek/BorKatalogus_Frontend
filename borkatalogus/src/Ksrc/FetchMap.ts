@@ -5,6 +5,7 @@ export async function GetData(city:string) {
     const url = `https://api.geoapify.com/v1/geocode/search?text=${city}&type=city&format=json&apiKey=${ApiKey}` 
     try{
         const response = await fetch(url)
+        console.log(url)
         if(!response.ok){
              throw new Error(`Response status: ${response.status}`);
         }

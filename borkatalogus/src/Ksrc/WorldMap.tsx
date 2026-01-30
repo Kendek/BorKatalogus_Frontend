@@ -7,7 +7,8 @@ import { GetData } from './FetchMap';
 
 export type Marker ={
     longitude : number,
-    latitude :  number
+    latitude :  number,
+    name: string
 }
 const Chart = () => {
     const [Markers, SetMarkers] = useState<Marker[]>([])
@@ -39,7 +40,8 @@ const Chart = () => {
         
         MarkerSeries.mapPolygons.template.setAll({
             fill: am5.color("#000000"),
-            interactive: true
+            interactive: true,
+            tooltipText : "asd"
         })
         
         markerSeriesRef.current = MarkerSeries;
@@ -52,10 +54,14 @@ const Chart = () => {
     }, []);
 
     useEffect(() => {
+        console.log(Markers)
         if (markerSeriesRef.current && Markers.length > 0) {
             Markers.forEach(marker => {
                 markerSeriesRef.current.data.push({
-                    geometry: am5map.getGeoCircle({ latitude: marker.latitude, longitude: marker.longitude }, 0.2)
+                    geometry: { type:"Point",  coordinates: [marker.longitude, marker.latitude]},
+                    interactive: true,
+                    name : "asd"
+                
                 });
             });
         }
@@ -67,7 +73,8 @@ const Chart = () => {
                 if (data?.longitude !== undefined && data?.latitude !== undefined) {
                     return {
                         longitude: data.longitude,
-                        latitude: data.latitude
+                        latitude: data.latitude,
+                        name : varos
                     };
                 }
                 return null;
