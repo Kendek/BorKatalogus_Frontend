@@ -51,7 +51,7 @@ const Navbar = ({ cartIconRef } : NavbarProps) => {
     return (
         <nav className={styles.navbar} >
             <div className={styles.navbarleft}>
-                <Link to="/home"><img src="./logo.png" alt="" className={`${location.pathname === "/cart" || location.pathname == "/checkout"  ? styles.hideLogo : ""} ${styles.logo}`} /></Link>
+                <Link to="/home"><img src="./logo.png" alt="" className={`${location.pathname === "/cart" || location.pathname == "/checkout" || location.pathname === "/done"  ? styles.hideLogo : ""} ${styles.logo}`} /></Link>
             </div>
             <div className={currentStep ? styles.showStep : styles.hideStep}>
                 <MiniNavbarStepper currentStep={currentStep} />
@@ -65,7 +65,7 @@ const Navbar = ({ cartIconRef } : NavbarProps) => {
                         <Link to="/map" className={location.pathname === "/map" ? styles.pageLinkactive : styles.pageLink} onClick={() => { setClikced(false) }}>Map</Link>
                     </li>
                     <li>
-                        <Link to="/webshop" className={location.pathname === "/webshop" || location.pathname.startsWith("/currentWine") ? styles.pageLinkactive : styles.pageLink} onClick={() => { setClikced(false) }}>Webshop</Link>
+                        <Link to="/webshop" className={location.pathname === "/webshop" || location.pathname.startsWith("/currentWine") || location.pathname === "/review" ? styles.pageLinkactive : styles.pageLink} onClick={() => { setClikced(false) }}>Webshop</Link>
                     </li>
                 </ul>
             </div>

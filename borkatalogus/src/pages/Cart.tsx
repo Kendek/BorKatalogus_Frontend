@@ -14,8 +14,7 @@ const Cart = () => {
   
   const shippingPrice = 2500;
   const itemsTotalPrice = cart.reduce((sum, i) => sum = sum + i.wine.price * i.quantity, 0)
-  const fullPrice = itemsTotalPrice + shippingPrice - discount
-  localStorage.setItem("fullPrice", fullPrice.toString())
+  const fullPrice = itemsTotalPrice == 0 ? 0 : itemsTotalPrice + shippingPrice - discount;
 
   const [leaving, setLeaving] = useState(false);
 
@@ -70,8 +69,6 @@ const Cart = () => {
       localStorage.setItem("discount", discountAmount.toString());
     }
   }, [itemsTotalPrice]);
-
-
 
 
   return (

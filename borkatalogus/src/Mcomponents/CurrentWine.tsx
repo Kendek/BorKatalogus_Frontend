@@ -40,7 +40,7 @@ const CurrentWine = ({ cartIconRef }: CurrentWineProps) => {
   };
   /*-------------------*/
 
-  const { wines, currentWineId, setCartItems } = useContext(WineContext);
+  const { wines, currentWineId, setCartItems, setCurrentWineId } = useContext(WineContext);
   const wine = wines.find(w => w.id === currentWineId);
   const [detailsOpen, setDetailsOpen] = useState(false);
 
@@ -73,10 +73,14 @@ const CurrentWine = ({ cartIconRef }: CurrentWineProps) => {
     setTimeout(() => navigate("/webshop"), 300);
   }
 
+  const handleClick = (wine: Wine) => {
+    setCurrentWineId(wine.id);
+  }
+
   const avgRating = wine.reviews.reduce((sum, r) => sum + r.rating, 0) / wine.reviews.length;
 
   return (
-    <div className={style.mainDiv} onClick={(e) => { if (e.target === e.currentTarget) { close()} }}>
+    <div className={style.mainDiv} onClick={(e) => { if (e.target === e.currentTarget) { close() } }}>
       <div className={`${style.container} ${closing ? style.closing : ""}`} onClick={(e) => e.stopPropagation()}>
         <button onClick={close} className={style.closeBtn}>X</button>
         <div className={style.overlay}>
@@ -89,10 +93,10 @@ const CurrentWine = ({ cartIconRef }: CurrentWineProps) => {
             </div>
             <div className={style.wineRating}>
               <span>
-                <Rating value={avgRating} readOnly />
-                <p>{wine.reviews.length}</p>
+                <Rating value={avgRating} precision={0.5} readOnly />
+                <p>({wine.reviews.length})</p>
                 <i className="fa-solid fa-grip-lines-vertical"></i>
-                <b>View All Reviews</b>
+                <b onClick={() => navigate("/review", { state: { wineId: wine.id } })}>View All Reviews</b>
               </span>
             </div>
             <div className={style.winePrice}>
@@ -103,9 +107,9 @@ const CurrentWine = ({ cartIconRef }: CurrentWineProps) => {
                 {wine?.description}
               </p>
             </div>
-            <div className={style.detailsToggle} onClick={() => setDetailsOpen(!detailsOpen)}> 
-              Wine Details 
-              <i className={`fa-solid fa-chevron-${detailsOpen ? "up" : "down"}`}></i> 
+            <div className={style.detailsToggle} onClick={() => setDetailsOpen(!detailsOpen)}>
+              Wine Details
+              <i className={`fa-solid fa-chevron-${detailsOpen ? "up" : "down"}`}></i>
             </div>
             <div className={`${style.wineDetails} ${detailsOpen ? style.open : ""}`}>
               <div>

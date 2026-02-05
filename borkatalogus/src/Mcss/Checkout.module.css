@@ -84,10 +84,14 @@
     font-size: 14px;
     outline: none;
     transition: all 0.3s ease;
+    margin-top: 1vh;
 }
 
-.sectionBody input:hover{
-    box-shadow: 0 12px 35px #8e183b39;
+.sectionBody input:focus{
+    border-color: var(--primary-light-colour);
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px #8e183b39;
 }
 
 
@@ -242,6 +246,19 @@
     font-weight: 600;
 }
 
+.backLink {
+    display: inline-block;
+    margin-top: 20px;
+    color: #555;
+    font-size: var(--label-font);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.backLink:hover {
+    color: #b62752;
+}
+
 
 @keyframes checkoutSlideInRight {
     from {
@@ -264,4 +281,12 @@
         transform: translateX(-100%);
         opacity: 0;
     }
+}
+
+@media (max-width: 768px) {
+    .containerCheckout{
+        flex-direction: column;
+        padding: 20px;
+    }
+
 }

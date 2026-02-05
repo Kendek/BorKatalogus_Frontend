@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { use, useContext, useEffect, useState } from 'react'
 import style from "../Mcss/Checkout.module.css";
 import { WineContext } from '../Mcontext/WineContextProvider';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Checkout = () => {
   const [entering, setEntering] = useState(false);
@@ -195,7 +195,12 @@ const Checkout = () => {
       return;
     }
     setLeaving(true);
-    setTimeout(() => navigate("/done"), 400);
+    setTimeout(() => {
+      localStorage.setItem("finalPrice", finalPrice.toString());
+      localStorage.setItem("email", email);
+      navigate("/done");
+    }, 400);
+
   };
   /* --------------- */
 
@@ -282,7 +287,7 @@ const Checkout = () => {
               <button className={style.purchaseButton} onClick={(e) => handlePurchase(e)}>Purchase</button>
             </div>
           </div>
-
+          <Link to={"/cart"}><p className={style.backLink}>← Back to cart</p></Link>
         </div>
 
 

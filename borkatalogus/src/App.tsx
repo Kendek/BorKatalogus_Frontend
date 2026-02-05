@@ -10,6 +10,7 @@ import CurrentWine from './Mcomponents/CurrentWine'
 import WineContextProvider from './Mcontext/WineContextProvider'
 import Checkout from './pages/Checkout'
 import Done from './pages/Done'
+import Review from './pages/Review'
 
 const App = () => {
 
@@ -20,7 +21,8 @@ const App = () => {
       localStorage.removeItem("discount");
       localStorage.removeItem("discountCode");
       localStorage.removeItem("cart");
-      localStorage.removeItem("fullPrice");
+      localStorage.removeItem("email");
+      localStorage.removeItem("finalPrice");
 
 
       sessionStorage.setItem("visited", "true");
@@ -41,6 +43,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/done" element={<Done />} />
+          <Route path="/review" element={<Review />} />
         </Routes>
       </BrowserRouter>
     </WineContextProvider>

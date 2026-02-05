@@ -43,7 +43,7 @@
 
 .orderBox {
     background-color: var(--secondary-colour);
-    padding: 20px;
+    padding: 10px;
     border-radius: 14px;
     display: flex;
     flex-direction: column;
