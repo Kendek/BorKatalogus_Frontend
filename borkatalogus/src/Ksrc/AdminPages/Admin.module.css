@@ -3,10 +3,21 @@
     display: flex;
     justify-content: space-evenly;
     padding: 10px;
-    button{
-        font-size: larger;
-        padding: 3px;
-        background-color: white;
-        border-radius: 3px;
-    }
+    border-bottom: #8B1E3F 5px solid;
+    
+}
+.Option{
+    color: #8B1E3F;
+    font-size: larger;
+    border-radius: 3px;
+    border: #8B1E3F solid 2px;
+    padding: 5px;
+}
+.Active{
+    color: white;
+    background-color: #8B1E3F;
+    font-size: larger;
+    border-radius: 3px;
+    border: white solid 2px;
+    padding: 5px;
 }
