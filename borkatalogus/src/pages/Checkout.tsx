@@ -42,10 +42,11 @@ const Checkout = () => {
   /* ------------- */
 
   /* Personal Handling*/
-  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState(localStorage.getItem("firstName") || "");
+  const [lastName, setLastName] = useState(localStorage.getItem("lastName") || "");
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [phone, setPhone] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+
 
   const onlyLetters = (v: string) =>
     v.replace(/[^a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ\s]/g, "");
@@ -217,10 +218,10 @@ const Checkout = () => {
             </div>
 
             <div className={`${style.sectionBody} ${activeSection === "personal" ? style.open : style.closed}`}>
-              <input type="email" placeholder="Email" value={email} onChange={handleEmail} />
-              <input type="tel" placeholder="Phone Number" value={phone} onChange={handlePhone} />
               <input type="text" placeholder="First Name" value={firstName} onChange={handleFirstName} />
               <input type="text" placeholder="Last Name" value={lastName} onChange={handleLastName} />
+              <input type="email" placeholder="Email" value={email} onChange={handleEmail} />
+              <input type="tel" placeholder="Phone Number" value={phone} onChange={handlePhone} />
 
               <button className={style.sectionButton} onClick={handlePersonalContinue}>
                 Continue

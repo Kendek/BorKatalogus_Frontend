@@ -1,15 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import style from "../Mcss/Review.module.css"
 import { WineContext } from '../Mcontext/WineContextProvider'
 import { Rating } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 
-const Review = () => {
+type ReviewProps = { setShowReview: (value: boolean) => void; };
 
-    const { wines } = useContext(WineContext)
-    const location = useLocation();
-    const passedId = location.state?.wineId;
-    const wine = wines.find(w => w.id === passedId);
+const Review = ({ setShowReview }: ReviewProps) => {
+
+    const { wines, currentWineId } = useContext(WineContext)
+    const wine = wines.find(w => w.id === currentWineId);
+
+    const [star,setStar] = useState(3);
+    const [reviewText, setReviewText] = useState("");
+    const [reviewName, setReviewName] = useState("");
 
     const total = wine?.reviews.length || 0;
 
@@ -23,9 +27,24 @@ const Review = () => {
 
     const avgRating = wine?.reviews && wine.reviews.length > 0 ? wine.reviews.reduce((sum, r) => sum + r.rating, 0) / total : 0;
 
+    const [closing, setClosing] = useState(false);  
+
+    const handleClose = () => {
+        setClosing(true);
+        setTimeout(() => setShowReview(false), 300);
+    };
+
+    const handleReviewSubmit = () => {
+        if(reviewText == "" || reviewName == "")
+            return;
+        //set new review
+    }
+
     return (
-        <div className={style.reviewWrapper}>
-            <div className={style.reviewPage}>
+        <div className={`${style.overlay} ${closing ? style.overlayClosing : ""}`} onClick={handleClose}>
+            <div className={`${style.reviewPage} ${closing ? style.closing : ""}`}
+                onClick={(e) => e.stopPropagation()}>
+                <button onClick={handleClose} className={style.closeBtn}>X</button>
                 <h2>Reviews</h2>
 
                 <div className={style.summaryBox}>
@@ -56,21 +75,48 @@ const Review = () => {
                     </div>
                 </div>
 
-                <div className={style.reviewList}>
-                    {wine?.reviews.map(r =>
-                        <div key={r.id} className={style.reviewItem}>
-                            <img src="profile.png" className={style.avatar} />
-                            <div className={style.reviewContent}>
-                                <div className={style.headerRow}>
-                                    <span className={style.name}>{r.name}</span>
-                                    <span className={style.rating}>{r.rating} <Rating value={r.rating} readOnly /></span>
-                                </div>
+                <div className={style.columns}>
 
-                                <div className={style.date}></div>
-                                <p className={style.text}>{r.comment}</p>
-                            </div>
+                    <div className={style.leftCol}>
+
+                        <div className={style.reviewList}>
+                            {wine?.reviews.map(r =>
+                                <div key={r.id} className={style.reviewItem}>
+                                    <img src="profile.png" className={style.avatar} />
+                                    <div className={style.reviewContent}>
+                                        <div className={style.headerRow}>
+                                            <span className={style.name}>{r.name}</span>
+                                            <span className={style.rating}>{r.rating} <Rating value={r.rating} readOnly /></span>
+                                        </div>
+
+                                        <p className={style.text}>{r.comment}</p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    )}
+                    </div>
+
+                    <div className={style.rightCol}>
+                        <h3>Add Review</h3>
+
+                        <input
+                            type="text"
+                            placeholder="Your name"
+                            className={style.input}
+                            onChange={(e) => setReviewName(e.target.value)}
+                            readOnly/>
+                        <Rating
+                            value={star}
+                            max={5}
+                            onChange={(event, newValue) => setStar(newValue || 0)}
+                            className={style.ratingInput} />
+                        <textarea
+                            placeholder="Your review..."
+                            className={style.textarea}
+                            onChange={(e) => setReviewText(e.target.value)}
+                            value={reviewText}/>
+                        <button className={style.submitBtn} onClick={() => handleReviewSubmit()}>Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
