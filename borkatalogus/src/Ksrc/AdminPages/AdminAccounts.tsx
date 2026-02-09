@@ -9,14 +9,15 @@ import { useState } from 'react';
 const AdminAccounts = () => {
 
   type Account  = {
+    id:string,
     firstName:string,
     lastName:string,
     email:string,
   }
 
   const [accounts, setAccounts] = useState<Account[]>([
-    { firstName: "John", lastName: "Doe", email: "john@example.com"},
-    { firstName: "Jane", lastName: "Smith", email: "jane@example.com"}
+    { id : "asd-01", firstName: "John", lastName: "Doe", email: "john@example.com"},
+    { id : "asd-02", firstName: "Jane", lastName: "Smith", email: "jane@example.com"}
   ]);
 
   return (
