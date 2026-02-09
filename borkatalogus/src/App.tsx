@@ -3,14 +3,12 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
 import Home from './pages/Home'
 import Map from './pages/Map'
 import Webshop from './pages/Webshop'
-import Navbar from './pages/Navbar'
+import Navbar from './Navbar'
 import Login from './pages/Login'
 import Cart from './pages/Cart'
-import CurrentWine from './Mcomponents/CurrentWine'
 import WineContextProvider from './Mcontext/WineContextProvider'
 import Checkout from './pages/Checkout'
 import Done from './pages/Done'
-import Review from './pages/Review'
 
 const App = () => {
 
@@ -43,7 +41,6 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/done" element={<Done />} />
-          <Route path="/review" element={<Review />} />
         </Routes>
       </BrowserRouter>
     </WineContextProvider>

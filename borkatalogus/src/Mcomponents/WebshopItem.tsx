@@ -60,7 +60,7 @@ const WebshopItem = ({ filteredWines, cartIconRef }: WebshopItemProps) => {
         filteredWines.map((wine, index) => (
             <div className={style.singleItem} style={{ "--i": index } as any} onClick={() => handleClick(wine)}>
                 <div className={style.imageWrapper}>
-                    <img src="wineTest.png" alt="" />
+                    <img src={wine.url ? wine.url : "wineTest.png"} alt="" />
                     <div className={style.overlay}>
                         <div className={style.itemTexts}>
                             <div>

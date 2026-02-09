@@ -151,9 +151,8 @@
 }
 
 .wineDetails {
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     margin-top: 4vh;
     gap: 5px;
     width: 70%;
@@ -227,10 +226,10 @@
 
     .wineRating span {
         font-size: var(--label-font);
+        align-items: center;
     }
 
-    .wineRating i,
-    .wineRating b {
+    .wineRating i {
         display: none;
     }
 
@@ -244,6 +243,7 @@
 
     .winePrice {
         font-size: var(--title-font);
+        margin-top: 2.5vh;
     }
 
     .wineDescription {
@@ -255,6 +255,7 @@
     }
 
     .wineDetails {
+        display: flex;
         flex-direction: column;
         width: 100%;
         height: 0;
@@ -286,7 +287,7 @@
     }
 
     .wineBtn {
-        margin-bottom: 1vh;
+        margin-bottom: 5vh;
         width: 100%;
     }
 

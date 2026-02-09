@@ -6,10 +6,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 type CurrentWineProps = {
   cartIconRef: React.RefObject<HTMLDivElement | null>;
+  setShowReview: (value: boolean) => void;
 };
 
 
-const CurrentWine = ({ cartIconRef }: CurrentWineProps) => {
+const CurrentWine = ({ cartIconRef, setShowReview }: CurrentWineProps) => {
 
   /* Add to cart Animation*/
   const startFlyAnimation = (imgElement: HTMLImageElement) => {
@@ -77,7 +78,10 @@ const CurrentWine = ({ cartIconRef }: CurrentWineProps) => {
     setCurrentWineId(wine.id);
   }
 
-  const avgRating = wine.reviews.reduce((sum, r) => sum + r.rating, 0) / wine.reviews.length;
+  const avgRating = Array.isArray(wine.reviews) && wine.reviews.length > 0
+    ? wine.reviews.reduce((sum, r) => sum + r.rating, 0) / wine.reviews.length
+    : 0;
+
 
   return (
     <div className={style.mainDiv} onClick={(e) => { if (e.target === e.currentTarget) { close() } }}>
@@ -85,7 +89,7 @@ const CurrentWine = ({ cartIconRef }: CurrentWineProps) => {
         <button onClick={close} className={style.closeBtn}>X</button>
         <div className={style.overlay}>
           <div className={style.wineLeftSide}>
-            <img src="wineTest.png" alt="" className={style.currentWineImage} />
+            <img src={wine.url ? wine.url : "wineTest.png"} alt="" className={style.currentWineImage} />
           </div>
           <div className={style.wineRightSide}>
             <div className={style.wineTitle}>
@@ -94,9 +98,9 @@ const CurrentWine = ({ cartIconRef }: CurrentWineProps) => {
             <div className={style.wineRating}>
               <span>
                 <Rating value={avgRating} precision={0.5} readOnly />
-                <p>({wine.reviews.length})</p>
+                <p>({"wine.reviews.length"})</p>
                 <i className="fa-solid fa-grip-lines-vertical"></i>
-                <b onClick={() => navigate("/review", { state: { wineId: wine.id } })}>View All Reviews</b>
+                <b onClick={() => { handleClick(wine); setShowReview(true) }}>View All Reviews</b>
               </span>
             </div>
             <div className={style.winePrice}>
@@ -111,24 +115,24 @@ const CurrentWine = ({ cartIconRef }: CurrentWineProps) => {
               Wine Details
               <i className={`fa-solid fa-chevron-${detailsOpen ? "up" : "down"}`}></i>
             </div>
-            <div className={`${style.wineDetails} ${detailsOpen ? style.open : ""}`}>
-              <div>
-                <i className="fa-solid fa-wine-glass"></i>
-                <span>{wine?.type}</span>
+              <div className={`${style.wineDetails} ${detailsOpen ? style.open : ""}`}>
+                <div>
+                  <i className="fa-solid fa-wine-glass"></i>
+                  <span>{wine?.type}</span>
+                </div>
+                <div>
+                  <i className="fa-solid fa-wine-bottle"></i>
+                  <span>{wine?.alcoholContent} %</span>
+                </div>
+                <div>
+                  <i className="fa-brands fa-pagelines"></i>
+                  <span>{wine?.grapes.map(g => g.name).join(", ")}</span>
+                </div>
+                <div>
+                  <i className="fa-solid fa-calendar"></i>
+                  <span>{wine?.year}</span>
+                </div>
               </div>
-              <div>
-                <i className="fa-solid fa-wine-bottle"></i>
-                <span>{wine?.alcoholContent} %</span>
-              </div>
-              <div>
-                <i className="fa-brands fa-pagelines"></i>
-                <span>{wine?.grapes.map(grape => grape.name)}</span>
-              </div>
-              <div>
-                <i className="fa-solid fa-calendar"></i>
-                <span>{wine?.year}</span>
-              </div>
-            </div>
             <div className={style.wineBtn}>
               <button
                 onClick={() => {
