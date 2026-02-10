@@ -4,11 +4,14 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import AdminNav from './AdminNav'
 import { useState } from 'react';
 import styles from './Admin.module.css'
 import AdminGrape from './AdminGrape';
 import AdminWine from './AdminWine';
+import { ConfirmDialog } from 'primereact/confirmdialog'; 
+
+
+
 const AdminAccounts = () => {
 
   type Account  = {
@@ -18,7 +21,15 @@ const AdminAccounts = () => {
     email:string,
   }
 
+   const accept = () => {
+       console.log("Accepted!")
+    }
+
+    const reject = () => {
+        console.log("Declined")
+    }
   const [openDelete, setDelete] = useState(false);
+   const [visible, setVisible] = useState(false);
 
   const [accounts, setAccounts] = useState<Account[]>([
     { id : "asd-01", firstName: "John", lastName: "Doe", email: "john@example.com"},
@@ -40,7 +51,7 @@ const AdminAccounts = () => {
     <div>
     
    <div  className={styles.WineMain}>
-        <h1>Accounts</h1>
+        <h1 className={styles.AdminTitles}>Accounts</h1>
      <div className={`${styles.ButtonHeader} ${styles.DeleteHeader}`}>
         <button className={`${styles.ToggleButton}`} onClick={() => {setDelete(!openDelete)}}>Delete ⤵️</button>
         </div>
@@ -63,13 +74,21 @@ const AdminAccounts = () => {
                   <TableCell>{row.firstName}</TableCell>
                   <TableCell>{row.lastName}</TableCell>
                   <TableCell>{row.email}</TableCell>
-                  <TableCell><button>❌</button></TableCell>
+                  <TableCell>
+
+                     <ConfirmDialog className={styles.ConfirmBox}  visible={visible} onHide={() => setVisible(false)} message="Are you sure you want to proceed?" 
+                       accept={accept} reject={reject} />
+                  <div className="card flex justify-content-center">
+                      <button onClick={() => setVisible(true)} className={styles.DeleteDbBtn}>Delete</button>
+                  </div>
+                  </TableCell>
                 </TableRow>
               ))}
           </TableBody>
         </Table>
       </TableContainer>
             </div>}  
+            
       <AdminGrape></AdminGrape>
       <AdminWine></AdminWine>
 

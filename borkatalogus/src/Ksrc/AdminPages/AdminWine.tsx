@@ -34,7 +34,7 @@ const AdminWine = () => {
   return (
     <div>
       <div  className={styles.WineMain}>
-    <h1>Wines</h1>
+    <h1 className={styles.AdminTitles}>Wines</h1>
         <div className={`${styles.ButtonHeader} ${styles.PostHeader}`}>
         <button className={`${styles.ToggleButton}`} onClick={() => {Toggle("Post")}}>Post ⤵️</button>
         </div>

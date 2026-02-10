@@ -120,3 +120,31 @@
     border: #EB6156 solid 3px;
     width: 80%;
 }
+
+.AdminTitles{
+    color: #8B1E3F;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.DeleteDbBtn
+{
+    cursor: pointer;
+    font-size: larger;
+    font-weight: bold;
+    padding: 4px;
+    border-radius: 3px;
+    background-color: #EB6156;
+    color: white;
+    border: #be3228 solid 3px;
+
+}
+.ConfirmBox{
+    background-color: white;
+    border: black solid 3px;
+    width: 15vw;
+    height: 10vh;
+    button{
+        margin: auto;
+    }
+}

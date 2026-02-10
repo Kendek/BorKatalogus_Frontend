@@ -5,7 +5,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import styles from './Admin.module.css'
-import AdminNav from './AdminNav'
 import { useEffect, useState } from 'react'
 import { GetDbData } from './AdminFetch';
 
@@ -45,7 +44,7 @@ const AdminGrape = () => {
     <div>
 
      <div  className={styles.WineMain}>
-      <h1>Grapes</h1>
+      <h1 className={styles.AdminTitles}>Grapes</h1>
       <div className={`${styles.ButtonHeader} ${styles.PostHeader}`}>
         <button className={`${styles.ToggleButton}`} onClick={() => {setPost(!openPost)}}>Post ⤵️</button>
         </div>
