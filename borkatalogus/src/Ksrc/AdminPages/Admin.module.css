@@ -50,3 +50,114 @@
         gap: 20px;
     }
 }
+
+.TableContainer
+{
+    width: 80%;
+    margin: auto;
+    border: #8B1E3F solid  3px;
+    padding: 5px;
+    margin-top: 5px;
+
+}
+.WineMain{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+    
+    
+}
+
+.ButtonHeader{
+    width: 80%;
+    height: 4rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.ToggleButton{  
+    color: white;
+    height: 2.4rem;
+    width: 7rem;
+    font-size: larger;
+    border-radius: 4px;
+    margin: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.PostHeader{
+    background-color:  #4a8ee1d1;
+    button{
+        background-color: #55A1FF;
+        border:  solid 1px #2f5f9d;
+    }
+}
+
+.DeleteHeader{
+    background-color:  #EB6156;
+    button{
+        background-color: #f47369;
+        border:  solid 1px #be3228;
+    }
+}
+.PatchHeader{
+        background-color:  #06a6aed6;
+    button{
+        background-color: #03B7BF;
+        border:  solid 1px #1a848a;
+    }
+}
+
+.WinePost{
+    border: #2f5f9d solid 3px;
+    width: 80%;
+}
+.DeleteDiv{
+    border: #EB6156 solid 3px;
+    width: 80%;
+}
+
+.AdminTitles{
+    color: #8B1E3F;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.DeleteDbBtn
+{
+    cursor: pointer;
+    font-size: larger;
+    font-weight: bold;
+    padding: 4px;
+    border-radius: 3px;
+    background-color: #EB6156;
+    color: white;
+    border: #be3228 solid 3px;
+
+}
+.ConfirmBox{
+    background-color: white;
+    border: black solid 3px;
+    width: 15vw;
+    height: 13vh;
+    min-width: 240px;
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div{
+        display: flex;
+        gap: 30px;
+        button{
+            padding: 3px;
+        }
+    }
+
+}
+.p-dialog-header{
+    visibility: hidden;
+}
