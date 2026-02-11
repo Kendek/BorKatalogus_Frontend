@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import style from "../Mcss/Review.module.css"
 import { WineContext } from '../Mcontext/WineContextProvider'
 import { Rating } from '@mui/material';
-import { AddRatings } from '../MServices/AccountService';
+import { AddRatings, DeleteRatings } from '../MServices/AccountService';
 
 
 type ReviewProps = { setShowReview: (value: boolean) => void; };
@@ -69,6 +69,8 @@ const Review = ({ setShowReview }: ReviewProps) => {
         }
     };
 
+    const userEmail = localStorage.getItem("email");
+
     return (
         <div className={`${style.overlay} ${closing ? style.overlayClosing : ""}`} onClick={handleClose}>
             <div className={`${style.reviewPage} ${closing ? style.closing : ""}`}
@@ -118,7 +120,10 @@ const Review = ({ setShowReview }: ReviewProps) => {
                                             <span className={style.rating}>{r.score} <Rating value={r.score} readOnly /></span>
                                         </div>
 
-                                        <p className={style.text}>{r.content}</p>
+                                        <p className={style.text}>{r.content}</p>   
+                                        {r.createdByEmail === userEmail &&  (
+                                            <button className={style.deleteReviewBtn} onClick={() => DeleteRatings(r.id)}>X</button>
+                                        )}
                                     </div>
                                 </div>
                             )}
