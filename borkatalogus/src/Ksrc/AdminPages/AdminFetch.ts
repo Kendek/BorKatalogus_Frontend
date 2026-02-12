@@ -49,7 +49,7 @@ export type WinePostType = {
     price:number,
     alcoholcontent:number,
     file:File,
-    winderyid:number,
+    wineryId:number,
     grapeid: number[]
 }
 

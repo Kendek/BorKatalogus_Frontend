@@ -40,6 +40,18 @@ const AdminWine = () => {
       // Or you can work with it as a plain object:
       const formJson = Object.fromEntries(formData.entries());
       console.log(formJson)
+      console.log({
+        name: formJson.Name as string,
+        type: formJson.type as string,
+        description: formJson.description as string,
+        taste: formJson.taste as string,
+        year: parseInt(formJson.year as string),
+        price: parseFloat(formJson.price as string),
+        alcoholcontent: parseFloat(formJson.alcoholContent as string),
+        file: formJson.File as File,
+        wineryId: parseInt(formJson.winery as string),
+        grapeid: [1,2]
+      } as WinePostType)
     }
 
     useEffect(() => {
