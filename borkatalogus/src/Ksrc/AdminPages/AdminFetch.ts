@@ -47,10 +47,10 @@ export type WinePostType = {
     taste:string,
     year:number,
     price:number,
-    alcoholcontent:number,
+    alcoholContent:number,
     file:File,
     wineryId:number,
-    grapeid: number[]
+    grapeId: number[]
 }
 
 export async function GetDbData(url:string) {
@@ -67,12 +67,12 @@ export async function GetDbData(url:string) {
 }}
 
 export async function PostGrape(Payload:GrapPostType){
-    console.log(Payload)
     protectedAPI.post(`${BaseUrl}/api/grape`, Payload)
 }
-export async function WineGrape(Payload:WinePostType){
+export async function PostDbWine(Payload:WinePostType){
     console.log(Payload)
-    protectedAPI.post(`${BaseUrl}/api/wine`, Payload)
+
+     const response = await protectedAPI.post(`${BaseUrl}/api/wine`, Payload, { headers: { "Content-Type": "multipart/form-data" } }); console.log(response.data);
 }
 
 export async function AdminDelete(path:string, id:number)

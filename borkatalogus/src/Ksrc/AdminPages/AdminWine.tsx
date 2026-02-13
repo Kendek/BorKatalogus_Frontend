@@ -11,8 +11,10 @@ import { GetDbData } from './AdminFetch';
 import { b, option } from 'motion/react-client';
 import type { WinePostType, WineGetType, WineryGetType, WineryPostType,GrapeGet } from './AdminFetch';
 import Select from 'react-select'
-import { map } from '@amcharts/amcharts5/.internal/core/util/Array';
-
+import { ConfirmDialog } from 'primereact/confirmdialog'; 
+import { confirmDialog } from 'primereact/confirmdialog';
+import { AdminDelete } from './AdminFetch';
+import { PostDbWine } from './AdminFetch';
 const AdminWine = () => {
 
   type GrapeOptionsType = {
@@ -39,20 +41,46 @@ const AdminWine = () => {
   
       // Or you can work with it as a plain object:
       const formJson = Object.fromEntries(formData.entries());
-      console.log(formJson)
-      console.log({
+
+
+      PostDbWine({
         name: formJson.Name as string,
         type: formJson.type as string,
         description: formJson.description as string,
         taste: formJson.taste as string,
         year: parseInt(formJson.year as string),
         price: parseFloat(formJson.price as string),
-        alcoholcontent: parseFloat(formJson.alcoholContent as string),
+        alcoholContent: parseFloat(formJson.alcoholContent as string),
         file: formJson.File as File,
         wineryId: parseInt(formJson.winery as string),
-        grapeid: selectedGrapes.map(g => g.value)
+        grapeId: selectedGrapes.map(g => g.value)
       } as WinePostType)
     }
+
+       function accept(path:string, id:number){
+           console.log("Accepted!")
+           AdminDelete(path, id)
+        }
+    
+        const reject = () => {
+            console.log("Declined")
+        }
+  
+    const showTemplate = (Ipath:string, Iid:number) => {
+
+    confirmDialog({
+            group: 'Template',
+            message: (
+                <div className="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+                    <i className="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+                    <span>Please confirm to proceed moving forward.</span>
+                </div>
+            ),
+            accept: () => accept(Ipath, Iid),
+            reject
+        });
+    };
+
 
     useEffect(() => {
       const FetchWinesAndWinerys = async () =>{
@@ -145,7 +173,33 @@ const AdminWine = () => {
         </div>
             {openDelete && 
             <div className={styles.WinePost}>
-              
+               <TableContainer sx={{ maxHeight: '40vh' }}>
+       <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 650 }} >
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Price</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Delete</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+
+              {Wines.map((row) =>(
+                <TableRow>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.price}</TableCell>
+                  <TableCell>{row.type}</TableCell>
+                  <TableCell>
+                         <button onClick={() => showTemplate("/api/wine" , row.id)} className={styles.DeleteDbBtn}>Delete</button>
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <ConfirmDialog group='Template' className={styles.ConfirmBox}  />
             </div>}        
       </div>
     </div>
