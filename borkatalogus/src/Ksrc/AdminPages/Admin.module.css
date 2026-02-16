@@ -181,8 +181,82 @@ form{
     justify-content: space-evenly;
     width: 33%;
     align-items: center;
-    textarea{
-        width: 60%;
-        height: 40%;
-    }
+    gap: 15px;
+    padding: 20px;
+}
+
+.WinePost1 input[type="text"],
+.WinePost1 input[type="file"],
+.WinePost2 input,
+.WinePost3 textarea,
+.WinePost3 select {
+    padding: 10px 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.WinePost1 input[type="text"],
+.WinePost2 input,
+.WinePost3 textarea,
+.WinePost3 select {
+    width: 200px;
+}
+
+.WinePost1 input[type="text"]:focus,
+.WinePost2 input:focus,
+.WinePost3 textarea:focus,
+.WinePost3 select:focus {
+    outline: none;
+    border-color: #8B1E3F;
+    box-shadow: 0 0 8px rgba(139, 30, 63, 0.3);
+}
+
+.WinePost3 textarea {
+    width: 60%;
+    height: 40%;
+    resize: vertical;
+}
+
+.WinePost1 span,
+.WinePost2 span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.WinePost1 h1,
+.WinePost2 h1,
+.WinePost3 h1 {
+    margin: 0;
+    color: #8B1E3F;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.Add {
+    background-color: #8B1E3F;
+    color: white;
+    border: 2px solid #8B1E3F;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.Add:hover {
+    background-color: #6a1630;
+    box-shadow: 0 4px 12px rgba(139, 30, 63, 0.3);
+}
+
+.Add:active {
+    transform: scale(0.98);
 }

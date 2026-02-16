@@ -53,6 +53,18 @@ export type WinePostType = {
     grapeId: number[]
 }
 
+export type WinePatchType = {
+    name: string,
+    type:string,
+    description: string,
+    taste:string,
+    year:number,
+    price:number,
+    alcoholContent:number,
+    wineryId:number,
+    grapeId: number[]
+}
+
 export type WinePatchImgType = {
     id:number,
     image : File
@@ -92,3 +104,10 @@ export async function AdminDeleteAccount( id:string)
 {
     protectedAPI.delete(`${BaseUrl}/api/admin/deleteUser/${id}`)
 }
+
+export async function PatchDbWine(Payload:WinePatchType){
+    console.log(Payload)
+     const response = await protectedAPI.patch(`${BaseUrl}/api/wine/UpdtImg`, Payload);
+    console.log(response.data);
+}
+

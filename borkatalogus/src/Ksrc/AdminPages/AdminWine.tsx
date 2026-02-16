@@ -8,13 +8,12 @@ import TableRow from '@mui/material/TableRow';
 import styles from './Admin.module.css'
 import { useEffect, useState } from 'react';
 import { GetDbData } from './AdminFetch';
-import type { WinePostType, WineGetType, WineryGetType, GrapeGet,WinePatchImgType } from './AdminFetch';
+import type { WinePostType, WineGetType, WineryGetType, GrapeGet,WinePatchImgType, WinePatchType } from './AdminFetch';
 import Select from 'react-select'
 import { ConfirmDialog } from 'primereact/confirmdialog'; 
 import { confirmDialog } from 'primereact/confirmdialog';
 import { AdminDelete } from './AdminFetch';
-import { PostDbWine , PatchWineIMG } from './AdminFetch';
-import { option } from 'motion/react-client';
+import { PostDbWine , PatchWineIMG, PatchDbWine } from './AdminFetch';
 const AdminWine = () => {
 
   type GrapeOptionsType = {
@@ -31,6 +30,10 @@ const AdminWine = () => {
   const [Wines, setWines] = useState<WineGetType[]>([])
   const [Grapes, setGrapes] = useState<GrapeGet[]>([])
   const [SelectedWine, setSelectedWine] = useState()
+
+  const [GrapeOptions, setGrapesOptions] = useState<GrapeOptionsType[]>([])
+  const [selectedGrapes, setSelectedGrapes] = useState<GrapeOptionsType[]>([])
+  const [selectedPatchGrapes, setSelectedPatchGrapes] = useState<GrapeOptionsType[]>([])
 
   function PostWine(e:any) {
        // Prevent the browser from reloading the page
@@ -100,8 +103,7 @@ const AdminWine = () => {
       FetchWinesAndWinerys()
     }, [])
 
-    const [GrapeOptions, setGrapesOptions] = useState<GrapeOptionsType[]>([])
-    const [selectedGrapes, setSelectedGrapes] = useState<GrapeOptionsType[]>([])
+
 
     useEffect(() => {
       if (Grapes.length > 0) {
@@ -145,9 +147,32 @@ const AdminWine = () => {
 
     }
 
-    const PatchWine = () =>{
+    const PatchWine = (e:any) =>{
 
+      e.preventDefault();
+    
+      // Read the form data
+      const form = e.target;
+      const formData = new FormData(form);
+  
+  
+      // Or you can work with it as a plain object:
+      const formJson = Object.fromEntries(formData.entries());
+
+
+      PatchDbWine({
+        name: formJson.Name as string,
+        type: formJson.type as string,
+        description: formJson.description as string,
+        taste: formJson.taste as string,
+        year: parseInt(formJson.year as string),
+        price: parseFloat(formJson.price as string),
+        alcoholContent: parseFloat(formJson.alcoholContent as string),
+        wineryId: parseInt(formJson.winery as string),
+        grapeId: selectedPatchGrapes.map(g => g.value)
+      } as WinePatchType)
     }
+    
   return (
     <div>
       <div  className={styles.WineMain}>
@@ -167,7 +192,7 @@ const AdminWine = () => {
                 <div className={styles.WinePost2}>
                   <span> <h1>Type:<input name='type' type="text" /></h1></span>
                   <span> <h1>Taste:<input name='taste' type="text" /></h1></span>
-                  <span> <h1>Price:<input name='price' type="number" /> </h1></span>
+                  <span> <h1>Price:<input inputMode='numeric' name='price' type="number" /> </h1></span>
                   <span> <h1>Year:<input name='year' type="number" /></h1></span>
                   <span> <h1>Alcohol (%):<input name='alcoholContent' type="number" /></h1></span>
                 </div>
@@ -192,7 +217,9 @@ const AdminWine = () => {
 
                 </div>
                 </div>
-                 <button type="submit" className={styles.Add}>Add wine</button>   
+                <div style={{display:"flex", justifyContent:"center"}}>
+                    <button type="submit" className={styles.Add}>Add wine</button>   
+                </div>
               </form>
             </div>}
 
@@ -256,7 +283,7 @@ const AdminWine = () => {
 
             {openPatch && 
             <div className={styles.WinePost}>
-                       <form action="post" onSubmit={PostWine}>
+                       <form action="post" onSubmit={PatchWine}>
                 <select onChange={(e) => SelectPatch(parseInt(e.target.value))} name="id" id="">
                   {Wines.map((row) => <option value={row.id}>{row.name}</option>)}
                 </select>
@@ -278,7 +305,7 @@ const AdminWine = () => {
                   <h1>Description:</h1>
                   <textarea  name="description" value={`${SelectedWine["description"]}`} id=""></textarea>
                   <h1>Winery: </h1>
-                  <select value={`${SelectedWine["Wi"]}`} name="winery" id="">
+                  <select value={`${SelectedWine["WineryId"]}`} name="winery" id="">
                   {Winerys.map((row) =>(
                       <option value={row.id}>{row.name}</option>
                   ))}
@@ -289,8 +316,9 @@ const AdminWine = () => {
                     isMulti
                     options={GrapeOptions}
                     name='grapes'
-                    onChange={() => PatchWine()}
+                    onChange={(value) => setSelectedPatchGrapes(value as GrapeOptionsType[])}
                   />
+                  
 
                 </div>
                 </div>}
