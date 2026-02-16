@@ -107,12 +107,16 @@ export async function AdminDeleteAccount( id:string)
     protectedAPI.delete(`${BaseUrl}/api/admin/deleteUser/${id}`)
 }
 
-export async function PatchDbWine(Payload:WinePatchType){
+export async function PatchDbWine(Payload:WinePatchType, id:number){
     console.log(Payload)
-     const response = await protectedAPI.patch(`${BaseUrl}/api/wine/UpdtImg`, Payload);
+     const response = await protectedAPI.patch(`${BaseUrl}/api/wine/${id}`, Payload);
     console.log(response.data);
 }
-
+export async function PatchDbWinery(Payload:WineryPostType, id:number){
+    console.log(Payload)
+     const response = await protectedAPI.patch(`${BaseUrl}/api/winery/${id}`, Payload);
+    console.log(response.data);
+}
 
 export const handleNumberKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if(e.which > 57 || e.which < 48){

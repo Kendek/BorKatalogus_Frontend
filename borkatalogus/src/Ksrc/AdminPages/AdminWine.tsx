@@ -36,7 +36,7 @@ const AdminWine = () => {
   const [selectedPatchGrapes, setSelectedPatchGrapes] = useState<GrapeOptionsType[]>([])
 
   const [postIMG, setPostIMG] = useState(null)
-  const [PatchIMG, setPatchIMG] = useState(null)
+  const [PatchIMG, setPatchIMG] = useState<File | string | null>(null)
 
   function PostWine(e:any) {
        // Prevent the browser from reloading the page
@@ -162,6 +162,10 @@ const AdminWine = () => {
       // Or you can work with it as a plain object:
       const formJson = Object.fromEntries(formData.entries());
 
+      if (!SelectedWine) {
+        console.error("No wine selected for patching");
+        return;
+      }
 
       PatchDbWine({
         name: formJson.Name as string,
@@ -173,7 +177,7 @@ const AdminWine = () => {
         alcoholContent: parseFloat(formJson.alcoholContent as string),
         wineryId: parseInt(formJson.winery as string),
         grapeId: selectedPatchGrapes.map(g => g.value)
-      } as WinePatchType)
+      } as WinePatchType, SelectedWine["id"])
     }
 
 
@@ -188,7 +192,12 @@ const AdminWine = () => {
     }
   }
   const DisplayCurrentWineIMGPatch = (id:number) => {
-    //setPatchIMG(Wines[id].fileId)
+    const selectedWine = Wines.find(wine => wine.id === id);
+    if (selectedWine && selectedWine.fileId) {
+      setPatchIMG(selectedWine.fileId);
+    } else {
+      setPatchIMG(null);
+    }
   }
 
     
@@ -250,19 +259,26 @@ const AdminWine = () => {
             <div className={styles.PatchDiv}>
                 <form className={styles.Post} method='post' onSubmit={UpdateWineIMG}>
                    <label>
+                    <h1 className={styles.PatchTitle}>Select Wine to Patch IMG:</h1>
                       <select onChange={(e) => DisplayCurrentWineIMGPatch(parseInt(e.target.value))} name="id" id="">
                         {Wines.map((row) => <option value={row.id}>{row.name}</option>)}
                       </select>
                    </label>
+                    {PatchIMG && 
+                     <div>
                    <hr />
-                    <label>
-                      File:  <input  type="file" name='image' onChange={PatchIMGChange} />
-                      {PatchIMG && <img src={URL.createObjectURL(PatchIMG)} alt="preview" className={styles.previewImage} />}
-                    </label>
-                    <div>
-                        <button type="submit" className={styles.Add}>Update Image</button>   
-                    </div>
-            </form>
+                   <label>
+                      File: <input type="file" name='image' onChange={PatchIMGChange} />
+                   </label>
+                       {PatchIMG instanceof File && (
+                         <img src={URL.createObjectURL(PatchIMG)} alt="preview" className={styles.previewImage} />
+                       )}
+                       <div>
+                         <button type="submit" className={styles.Add}>Update Image</button>
+                       </div>
+                     </div>
+                   }
+                </form>
             </div>}
 
         <div className={`${styles.ButtonHeader} ${styles.DeleteHeader}`}>
@@ -343,13 +359,13 @@ const AdminWine = () => {
                     name='grapes'
                     onChange={(value) => setSelectedPatchGrapes(value as GrapeOptionsType[])}
                   />
-                  
+                                  <div style={{display:"flex", justifyContent:"center"}}>
+                  <button type="submit" className={styles.Add}>Update wine</button>   
+                </div>
 
                 </div>
                 </div>}
-                <div style={{display:"flex", justifyContent:"center"}}>
-                  <button type="submit" className={styles.Add}>Update wine</button>   
-                </div>
+
 
               </form>
             </div>}

@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import { useEffect, useState } from 'react';
 import styles from './Admin.module.css'
 import type { WineryGetType, WineryPostType } from './AdminFetch';
-import {GetDbData , AdminDelete, PostDbWinery, handleNumberKeyDown} from './AdminFetch';
+import {GetDbData , AdminDelete, PostDbWinery, handleNumberKeyDown, PatchDbWinery} from './AdminFetch';
 import { ConfirmDialog } from 'primereact/confirmdialog'; 
 import { confirmDialog } from 'primereact/confirmdialog';
 
@@ -19,6 +19,8 @@ const AdminWinery = () => {
   const [openPatch, setPatch] = useState(false);
 
   const [Winerys, setWinerys] = useState<WineryGetType[]>([]);
+
+  const [SelectedWinery, setSelectedWinery] = useState()
 
   
     useEffect(() => {
@@ -74,7 +76,44 @@ const AdminWinery = () => {
         } as WineryPostType)
       }
 
+      const SelectPatch =  (id:number) =>{
+      const FetchSelectedWinery = async () =>{
+        try {
+          const SelectedWineData = await GetDbData(`/api/winery/${id}`)
+          setSelectedWinery(SelectedWineData)
+          console.log(SelectedWineData)
+        } catch (error) {
+          console.error("Error fetching data:", error)
+        }
+      }
+      FetchSelectedWinery()
 
+    }
+
+    const PatchWinery = (e:any) =>{
+
+      e.preventDefault();
+    
+      // Read the form data
+      const form = e.target;
+      const formData = new FormData(form);
+  
+  
+      // Or you can work with it as a plain object:
+      const formJson = Object.fromEntries(formData.entries());
+
+      if (!SelectedWinery) {
+        console.error("No wine selected for patching");
+        return;
+      }
+
+      PatchDbWinery({
+        name: formJson.name as string,
+        region: formJson.region as string,
+        country: formJson.country as string,
+        established: parseInt(formJson.established as string),
+      } as WineryPostType, SelectedWinery["id"])
+    }
       
   return (
       <div>
@@ -149,6 +188,35 @@ const AdminWinery = () => {
             {openPatch && 
             <div className={styles.PatchDiv}>
            
+               <div style={{display:"flex", justifyContent:"center", marginBottom:"20px", flexDirection:"column", alignItems:"center"}}>
+                  <h1 className={styles.PatchTitle}>Select Winery to Patch:</h1>
+                  <br />
+                  <select onChange={(e) => SelectPatch(parseInt(e.target.value))} name="id" id="">
+                      {Winerys.map((row) => <option value={row.id}>{row.name}</option>)}
+                </select>
+                </div>
+                {SelectedWinery && <form className={styles.Patch} method='post' onSubmit={PatchWinery}>
+                  <label>
+                    Name: <input type='text' name='name' value={`${SelectedWinery["name"]}`} />
+                  </label>
+                  <label>
+                    Region: <input type='text' name='region' value={`${SelectedWinery["region"]}`} />
+                  </label>
+                  <label>
+                    Country: <input type='text' name='country' value={`${SelectedWinery["country"]}`} />
+                  </label>
+                  <label>
+                    Established: <input onKeyDown={handleNumberKeyDown} type='number' name='established' value={`${SelectedWinery["established"]}`} />
+                  </label>
+                  <div>
+                    <button type="submit" className={styles.Add}>Update Winery</button>   
+                  </div>
+
+                  <div style={{display:"flex", justifyContent:"center"}}>
+                  <button type="submit" className={styles.Add}>Update Winery</button>   
+                </div>
+                </form>}
+
             </div>}
   </div>
 
