@@ -310,7 +310,7 @@ const AdminWine = () => {
             {openPatch && 
             <div className={styles.WinePost}>
               <form action="post" onSubmit={PatchWine}>
-                <div style={{display:"flex", justifyContent:"center"}}>
+                <div style={{display:"flex", justifyContent:"center", marginBottom:"30px", flexDirection:"column", alignItems:"center"}}>
                   <h1 className={styles.PatchTitle}>Select Wine to Patch:</h1>
                   <br />
                   <select onChange={(e) => SelectPatch(parseInt(e.target.value))} name="id" id="">
