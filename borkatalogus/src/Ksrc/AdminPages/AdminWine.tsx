@@ -172,6 +172,12 @@ const AdminWine = () => {
         grapeId: selectedPatchGrapes.map(g => g.value)
       } as WinePatchType)
     }
+
+   const handleNumberKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if(e.which > 57 || e.which < 48){
+        e.preventDefault()
+      }
+   }
     
   return (
     <div>
@@ -192,9 +198,9 @@ const AdminWine = () => {
                 <div className={styles.WinePost2}>
                   <span> <h1>Type:<input name='type' type="text" /></h1></span>
                   <span> <h1>Taste:<input name='taste' type="text" /></h1></span>
-                  <span> <h1>Price:<input inputMode='numeric' name='price' type="number" /> </h1></span>
-                  <span> <h1>Year:<input name='year' type="number" /></h1></span>
-                  <span> <h1>Alcohol (%):<input name='alcoholContent' type="number" /></h1></span>
+                  <span> <h1>Price:<input onKeyDown={handleNumberKeyDown} name='price' type="number"  /> </h1></span>
+                  <span> <h1>Year:<input onKeyDown={handleNumberKeyDown} name='year' type="number"  /> </h1></span>
+                  <span> <h1>Alcohol (%):<input onKeyDown={handleNumberKeyDown} name='alcoholContent' type="number"  /></h1></span>
                 </div>
 
                 <div  className={styles.WinePost3}>
@@ -296,9 +302,9 @@ const AdminWine = () => {
                 <div className={styles.WinePost2}>  
                   <span> <h1>Type:<input name='type' value={`${SelectedWine["type"]}`} type="text" /></h1></span>
                   <span> <h1>Taste:<input name='taste' value={`${SelectedWine["taste"]}`} type="text" /></h1></span>
-                  <span> <h1>Price:<input name='price' value={`${SelectedWine["price"]}`} type="number" /> </h1></span>
-                  <span> <h1>Year:<input name='year'value={`${SelectedWine["year"]}`} type="number" /></h1></span>
-                  <span> <h1>Alcohol (%):<input name='alcoholContent' value={`${SelectedWine["alcoholContent"]}`} type="number" /></h1></span>
+                  <span> <h1>Price:<input name='price' value={`${SelectedWine["price"]}`} type="number" onKeyDown={handleNumberKeyDown} /> </h1></span>
+                  <span> <h1>Year:<input name='year'value={`${SelectedWine["year"]}`} type="number" onKeyDown={handleNumberKeyDown} /></h1></span>
+                  <span> <h1>Alcohol (%):<input name='alcoholContent' value={`${SelectedWine["alcoholContent"]}`} type="number" onKeyDown={handleNumberKeyDown}/></h1></span>
                 </div>
 
                 <div  className={styles.WinePost3}>
