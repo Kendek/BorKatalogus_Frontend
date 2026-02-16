@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import { useEffect, useState } from 'react';
 import styles from './Admin.module.css'
 import type { WineryGetType, WineryPostType } from './AdminFetch';
-import {GetDbData , AdminDelete, PostDbWinery} from './AdminFetch';
+import {GetDbData , AdminDelete, PostDbWinery, handleNumberKeyDown} from './AdminFetch';
 import { ConfirmDialog } from 'primereact/confirmdialog'; 
 import { confirmDialog } from 'primereact/confirmdialog';
 
@@ -16,6 +16,7 @@ const AdminWinery = () => {
 
   const [openDelete, setDelete] = useState(false);
   const [openPost, setPost] = useState(false);
+  const [openPatch, setPatch] = useState(false);
 
   const [Winerys, setWinerys] = useState<WineryGetType[]>([]);
 
@@ -72,12 +73,15 @@ const AdminWinery = () => {
           established: parseInt(formJson.established as string),
         } as WineryPostType)
       }
+
+
       
   return (
       <div>
 
      <div  className={styles.WineMain}>
       <h1 className={styles.AdminTitles}>Winerys</h1>
+
       <div className={`${styles.ButtonHeader} ${styles.PostHeader}`}>
         <button className={`${styles.ToggleButton}`} onClick={() => {setPost(!openPost)}}>Post ⤵️</button>
         </div>
@@ -94,7 +98,7 @@ const AdminWinery = () => {
                       Country: <input type='text' name='country'/>
                    </label>
                    <label>
-                      Established: <input type='text' name='established'/>
+                      Established: <input onKeyDown={handleNumberKeyDown} type='number' name='established'/>
                    </label>
                     <div>
                         <button type="submit" className={styles.Add}>Add Winery</button>   
@@ -137,6 +141,14 @@ const AdminWinery = () => {
       </TableContainer>
 
       <ConfirmDialog group='Template' className={styles.ConfirmBox}  />
+            </div>}
+
+        <div className={`${styles.ButtonHeader} ${styles.PatchHeader}`}>
+        <button className={`${styles.ToggleButton}`} onClick={() => {setPatch(!openPatch)}}>Patch ⤵️</button>
+        </div>
+            {openPatch && 
+            <div className={styles.PatchDiv}>
+           
             </div>}
   </div>
 

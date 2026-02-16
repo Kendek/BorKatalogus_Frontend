@@ -13,7 +13,7 @@ import Select from 'react-select'
 import { ConfirmDialog } from 'primereact/confirmdialog'; 
 import { confirmDialog } from 'primereact/confirmdialog';
 import { AdminDelete } from './AdminFetch';
-import { PostDbWine , PatchWineIMG, PatchDbWine } from './AdminFetch';
+import { PostDbWine , PatchWineIMG, PatchDbWine, handleNumberKeyDown } from './AdminFetch';
 const AdminWine = () => {
 
   type GrapeOptionsType = {
@@ -176,11 +176,6 @@ const AdminWine = () => {
       } as WinePatchType)
     }
 
-   const handleNumberKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if(e.which > 57 || e.which < 48){
-        e.preventDefault()
-      }
-   }
 
   const PostIMGChange = (e: any) => {
     if (e.target.files && e.target.files[0]) {

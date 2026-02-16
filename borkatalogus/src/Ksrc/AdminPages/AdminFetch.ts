@@ -98,10 +98,6 @@ export async function PatchWineIMG(Payload:WinePatchImgType){
 
      const response = await protectedAPI.patch(`${BaseUrl}/api/wine/UpdtImg`, Payload, { headers: { "Content-Type": "multipart/form-data" } }); console.log(response.data);
 }
-
-
-
-
 export async function AdminDelete(path:string, id:number)
 {
     protectedAPI.delete(`${BaseUrl}${path}/${id}`)
@@ -117,3 +113,9 @@ export async function PatchDbWine(Payload:WinePatchType){
     console.log(response.data);
 }
 
+
+export const handleNumberKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if(e.which > 57 || e.which < 48){
+        e.preventDefault()
+      }
+   }
