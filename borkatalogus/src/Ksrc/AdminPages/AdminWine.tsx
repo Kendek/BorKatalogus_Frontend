@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 import { GetDbData } from './AdminFetch';
 import type { WinePostType, WineGetType, WineryGetType, GrapeGet,WinePatchImgType, WinePatchType } from './AdminFetch';
 import Select from 'react-select'
-import { ConfirmDialog } from 'primereact/confirmdialog'; 
 import { confirmDialog } from 'primereact/confirmdialog';
 import { AdminDelete } from './AdminFetch';
 import { PostDbWine , PatchWineIMG, PatchDbWine, handleNumberKeyDown } from './AdminFetch';
@@ -214,7 +213,7 @@ const AdminWine = () => {
                 <div className={styles.WinePostContainer}>
                 <div className={styles.WinePost1}>
                   <span> <h1>Name:</h1><input name='Name' type="text" /></span> 
-                  <input type="file" name='File' onChange={PostIMGChange} />
+                  <input className={styles.fileInput} type="file" name='File' onChange={PostIMGChange} />
                   {postIMG && <img src={URL.createObjectURL(postIMG)} alt="preview" className={styles.previewImage} />}
                 </div>
 
@@ -265,15 +264,15 @@ const AdminWine = () => {
                       </select>
                    </label>
                     {PatchIMG && 
-                     <div>
-                   <hr />
-                   <label>
-                      File: <input type="file" name='image' onChange={PatchIMGChange} />
+                     <div style={{display: "flex", flexDirection : "column", alignItems: "center"}}>
+
+                   <label style={{textAlign: "center"}}>
+                      Upload File: <input className={styles.fileInput} type="file" name='image' onChange={PatchIMGChange} />
                    </label>
                        {PatchIMG instanceof File && (
                          <img src={URL.createObjectURL(PatchIMG)} alt="preview" className={styles.previewImage} />
                        )}
-                       <div>
+                       <div style={{display:"flex", justifyContent:"center", marginTop : "20px"}}>
                          <button type="submit" className={styles.Add}>Update Image</button>
                        </div>
                      </div>
@@ -312,7 +311,6 @@ const AdminWine = () => {
         </Table>
       </TableContainer>
 
-      <ConfirmDialog group='Template' className={styles.ConfirmBox}  />
             </div>}     
               <div className={`${styles.ButtonHeader} ${styles.PatchHeader}`}>
         <button className={`${styles.ToggleButton}`} onClick={() => {setPatch(!openPatch)}}>Patch ⤵️</button>
@@ -331,22 +329,22 @@ const AdminWine = () => {
                 {SelectedWine && 
                 <div className={styles.WinePostContainer}>
                 <div className={styles.WinePost1}>
-                  <span> <h1>Name:</h1><input name='Name' type="text" value={`${SelectedWine["name"]}`} /></span> 
+                  <span> <h1>Name:</h1><input name='Name' type="text" defaultValue={`${SelectedWine["name"]}`} /></span> 
                 </div>
 
                 <div className={styles.WinePost2}>  
-                  <span> <h1>Type:<input name='type' value={`${SelectedWine["type"]}`} type="text" /></h1></span>
-                  <span> <h1>Taste:<input name='taste' value={`${SelectedWine["taste"]}`} type="text" /></h1></span>
-                  <span> <h1>Price:<input name='price' value={`${SelectedWine["price"]}`} type="number" onKeyDown={handleNumberKeyDown} /> </h1></span>
-                  <span> <h1>Year:<input name='year'value={`${SelectedWine["year"]}`} type="number" onKeyDown={handleNumberKeyDown} /></h1></span>
-                  <span> <h1>Alcohol (%):<input name='alcoholContent' value={`${SelectedWine["alcoholContent"]}`} type="number" onKeyDown={handleNumberKeyDown}/></h1></span>
+                  <span> <h1>Type:<input name='type' defaultValue={`${SelectedWine["type"]}`} type="text" /></h1></span>
+                  <span> <h1>Taste:<input name='taste' defaultValue={`${SelectedWine["taste"]}`} type="text" /></h1></span>
+                  <span> <h1>Price:<input name='price' defaultValue={`${SelectedWine["price"]}`} type="number" onKeyDown={handleNumberKeyDown} /> </h1></span>
+                  <span> <h1>Year:<input name='year'defaultValue={`${SelectedWine["year"]}`} type="number" onKeyDown={handleNumberKeyDown} /></h1></span>
+                  <span> <h1>Alcohol (%):<input name='alcoholContent' defaultValue={`${SelectedWine["alcoholContent"]}`} type="number" onKeyDown={handleNumberKeyDown}/></h1></span>
                 </div>
 
                 <div  className={styles.WinePost3}>
                   <h1>Description:</h1>
-                  <textarea  name="description" value={`${SelectedWine["description"]}`} id=""></textarea>
+                  <textarea  name="description" defaultValue={`${SelectedWine["description"]}`} id=""></textarea>
                   <h1>Winery: </h1>
-                  <select value={`${SelectedWine["WineryId"]}`} name="winery" id="">
+                  <select defaultValue={`${SelectedWine["WineryId"]}`} name="winery" id="">
                   {Winerys.map((row) =>(
                       <option value={row.id}>{row.name}</option>
                   ))}

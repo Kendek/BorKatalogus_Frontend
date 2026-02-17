@@ -207,6 +207,11 @@
     justify-content: center;
 
 }
+
+.fileInput{
+    overflow: scroll;
+    max-width: 100%;
+}
 form{
     width: 80vw;
 }
@@ -317,5 +322,76 @@ textarea{
     display: block;
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+/* Patch form styles */
+.Patch {
+    color: #8B1E3F;
+    margin: auto;
+    margin-top: 10px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 12px 28px 12px;
+}
+
+.Patch label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.Patch input[type="text"],
+.Patch input[type="number"],
+.Patch select {
+    padding: 10px 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    width: 260px;
+}
+
+.Patch input:focus,
+.Patch select:focus {
+    outline: none;
+    border-color: #06a6ae;
+    box-shadow: 0 0 8px rgba(3, 183, 191, 0.18);
+}
+
+.PatchDiv {
+    border: #06a6ae solid 3px;
+    width: 80%;
+    border-radius: 3px;
+    padding: 20px 12px 28px 12px;
+    background: linear-gradient(180deg, rgba(3,183,191,0.03), rgba(3,183,191,0.01));
+}
+
+/* Ensure select dropdown is clearly visible */
+.PatchDiv select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #cfcfcf;
+    background: white;
+}
+
+@media screen and (max-width: 768px) {
+    .Patch, .PatchDiv {
+        width: 95%;
+        padding: 14px;
+    }
+    .Patch input[type="text"], .Patch input[type="number"], .Patch select {
+        width: 95%;
+        max-width: none;
+    }
 }
 

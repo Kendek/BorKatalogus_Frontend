@@ -10,7 +10,6 @@ import { GetDbData } from './AdminFetch';
 import { PostGrape } from './AdminFetch';
 import type { GrapPostType } from './AdminFetch';
 import { AdminDelete } from './AdminFetch';
-import { ConfirmDialog } from 'primereact/confirmdialog'; 
 import { confirmDialog } from 'primereact/confirmdialog';
 
 const AdminGrape = () => {
@@ -29,9 +28,7 @@ const AdminGrape = () => {
        setUptadeDb(!UpdateDb)
     }
 
-    const reject = () => {
-        console.log("Declined")
-    }
+
 
 
 
@@ -46,7 +43,6 @@ const AdminGrape = () => {
                 </div>
             ),
             accept: () => accept(Ipath, Iid),
-            reject
         });
     };
 
@@ -145,7 +141,6 @@ const AdminGrape = () => {
           </Table>
         </TableContainer>
 
-        <ConfirmDialog group='Template' className={styles.ConfirmBox}  />
 
             </div>}    
   </div>

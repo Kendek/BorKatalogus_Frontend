@@ -24,7 +24,7 @@ export type WineryPostType= {
     name: string,
     region: string,
     country: string,
-    established: number
+    establishedYear: number
 }
 export type WineGetType = {
     id:number,

@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react';
 import styles from './Admin.module.css'
 import AdminGrape from './AdminGrape';
 import AdminWine from './AdminWine';
-import { ConfirmDialog } from 'primereact/confirmdialog'; 
 import { confirmDialog } from 'primereact/confirmdialog';
 import { GetDbData,AdminDeleteAccount } from './AdminFetch';
 import AdminWinery from './AdminWinery';
@@ -43,9 +42,7 @@ const AdminAccounts = () => {
        AdminDeleteAccount(id)
     }
 
-    const reject = () => {
-        console.log("Declined")
-    }
+
 
       const showTemplate = (Iid:string) => {
 
@@ -57,8 +54,8 @@ const AdminAccounts = () => {
                     <span>Please confirm to proceed moving forward.</span>
                 </div>
             ),
-            accept:  () => accept(Iid),
-            reject
+            accept:  () => accept(Iid)
+            
         });
     };
 
@@ -100,7 +97,6 @@ const AdminAccounts = () => {
       </TableContainer>
               </div>}
 
-              <ConfirmDialog group='Template' className={styles.ConfirmBox}  />
             
       <AdminGrape></AdminGrape>
       <AdminWine></AdminWine>

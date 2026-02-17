@@ -8,8 +8,8 @@ import { useEffect, useState } from 'react';
 import styles from './Admin.module.css'
 import type { WineryGetType, WineryPostType } from './AdminFetch';
 import {GetDbData , AdminDelete, PostDbWinery, handleNumberKeyDown, PatchDbWinery} from './AdminFetch';
-import { ConfirmDialog } from 'primereact/confirmdialog'; 
 import { confirmDialog } from 'primereact/confirmdialog';
+
 
 
 const AdminWinery = () => {
@@ -72,7 +72,7 @@ const AdminWinery = () => {
           name: formJson.name as string,
           region: formJson.region as string,
           country: formJson.country as string,
-          established: parseInt(formJson.established as string),
+          establishedYear: parseInt(formJson.establishedYear as string),
         } as WineryPostType)
       }
 
@@ -111,7 +111,7 @@ const AdminWinery = () => {
         name: formJson.name as string,
         region: formJson.region as string,
         country: formJson.country as string,
-        established: parseInt(formJson.established as string),
+        establishedYear: parseInt(formJson.establishedYear as string),
       } as WineryPostType, SelectedWinery["id"])
     }
       
@@ -137,7 +137,7 @@ const AdminWinery = () => {
                       Country: <input type='text' name='country'/>
                    </label>
                    <label>
-                      Established: <input onKeyDown={handleNumberKeyDown} type='number' name='established'/>
+                      Established: <input onKeyDown={handleNumberKeyDown} type='number' name='establishedYear'/>
                    </label>
                     <div>
                         <button type="submit" className={styles.Add}>Add Winery</button>   
@@ -179,14 +179,13 @@ const AdminWinery = () => {
         </Table>
       </TableContainer>
 
-      <ConfirmDialog group='Template' className={styles.ConfirmBox}  />
             </div>}
 
         <div className={`${styles.ButtonHeader} ${styles.PatchHeader}`}>
         <button className={`${styles.ToggleButton}`} onClick={() => {setPatch(!openPatch)}}>Patch ⤵️</button>
         </div>
             {openPatch && 
-            <div className={styles.PatchDiv}>
+            <div style={{width: "80%", display: "flex", flexDirection : "column"}} className={styles.PatchDiv}>
            
                <div style={{display:"flex", justifyContent:"center", marginBottom:"20px", flexDirection:"column", alignItems:"center"}}>
                   <h1 className={styles.PatchTitle}>Select Winery to Patch:</h1>
@@ -195,27 +194,26 @@ const AdminWinery = () => {
                       {Winerys.map((row) => <option value={row.id}>{row.name}</option>)}
                 </select>
                 </div>
-                {SelectedWinery && <form className={styles.Patch} method='post' onSubmit={PatchWinery}>
+                {SelectedWinery &&
+                <div style={{width: "100%", display: "flex", justifyContent: "center"}}> 
+                 <form className={styles.Patch} method='post' onSubmit={PatchWinery}>
                   <label>
-                    Name: <input type='text' name='name' value={`${SelectedWinery["name"]}`} />
+                    Name: <input type='text' name='name' defaultValue={`${SelectedWinery["name"]}`} />
                   </label>
                   <label>
-                    Region: <input type='text' name='region' value={`${SelectedWinery["region"]}`} />
+                    Region: <input type='text' name='region' defaultValue={`${SelectedWinery["region"]}`} />
                   </label>
                   <label>
-                    Country: <input type='text' name='country' value={`${SelectedWinery["country"]}`} />
+                    Country: <input type='text' name='country' defaultValue={`${SelectedWinery["country"]}`} />
                   </label>
                   <label>
-                    Established: <input onKeyDown={handleNumberKeyDown} type='number' name='established' value={`${SelectedWinery["established"]}`} />
+                    Established: <input onKeyDown={handleNumberKeyDown} type='number' name='establishedYear' defaultValue={`${SelectedWinery["establishedYear"]}`} />
                   </label>
-                  <div>
-                    <button type="submit" className={styles.Add}>Update Winery</button>   
-                  </div>
 
                   <div style={{display:"flex", justifyContent:"center"}}>
                   <button type="submit" className={styles.Add}>Update Winery</button>   
                 </div>
-                </form>}
+                </form></div>}
 
             </div>}
   </div>
