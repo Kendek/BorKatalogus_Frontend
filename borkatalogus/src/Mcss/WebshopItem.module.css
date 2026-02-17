@@ -46,8 +46,8 @@
     left: 0;
     width: 100%;
     padding: 10px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
-    backdrop-filter: blur(2px);
+    background: rgba(255, 255, 255, 0.379);
+    backdrop-filter: blur(5px);
     border-top: 3px solid rgba(215, 215, 215, 0.682);
 }
 
@@ -57,19 +57,21 @@
     justify-content: space-between;
     align-items: center;
     gap: 5px;
-    color: var(--primary-light-colour);
 }
 
 .itemTitle {
     margin-bottom: 2vh;
     font-size: var(--small-item-font);
+    color: var(--primary-light-colour);
+    font-weight: 600;
 }
 
 .itemPrice {
     font-size: var(--description-font);
     margin-bottom: 1vh;
     gap: 20px;
-    font-weight: 600;
+    color: var(--primary-light-colour);
+    font-weight: 700;
 }
 
 .itemBtn {

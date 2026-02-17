@@ -1,6 +1,6 @@
 import styles from "../Kcss/Home.module.css"
 import '../Kcss/FavCard.css'
-import {Rating} from "primereact/rating"
+import { Rating } from '@mui/material';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -18,7 +18,7 @@ const FavCard = (props: { classname: string }) => {
                   <span className={styles.CardPrice}>189.99$</span>
                   <span className={styles.Discount}>200 $</span>
                   
-                  <span className={styles.CardRating}><Rating value={4} readOnly cancel={false}></Rating></span>
+                  <span className={styles.CardRating}><Rating value={4} readOnly precision={0.5}></Rating></span>
                   <button type="button" className={styles.OrderButton}>Order!</button>
                 </div>
             </div>

@@ -8,38 +8,36 @@
     justify-content: center;
     padding: 20px;
 }
+
 .filterOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: transparent;
-  z-index: 5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 5;
 }
 
 .blurred {
-  filter: blur(8px);
-  opacity: 0.4;
-  transition: all 0.3s ease;
+    filter: blur(8px);
+    opacity: 0.4;
+    transition: all 0.3s ease;
 }
 
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-
-  backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.15);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  z-index: 999;
-  animation: fadeIn 0.3s ease forwards;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn 0.3s ease forwards;
 }
 
 .container {
@@ -56,23 +54,22 @@
     align-items: flex-start;
 }
 
-/* Filter */
+/* ---- Desktop Filter Panel ---- */
 .filterPanel {
     width: 250px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
     border-radius: var(--smalldiv-radius);
     margin: 30px;
     position: sticky;
     top: 120px;
 }
 
-.filterPanel>.filterBlock:first-child {
+.filterPanel > .filterBlock:first-child {
     border: none;
     box-shadow: none;
     padding: 0;
-
 }
 
 .filterBlock {
@@ -122,10 +119,6 @@
     padding-bottom: 8px;
     font-weight: 700;
 }
-.filterTitle span
-{
-    cursor: pointer;
-}
 
 .filterTypes {
     display: flex;
@@ -143,6 +136,15 @@
     padding-bottom: 6px;
 }
 
+.activeTaste {
+    background-color: var(--primary-light-colour);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 .filterPrice {
     display: flex;
     flex-direction: column;
@@ -152,15 +154,28 @@
     font-weight: 600;
 }
 
-.filterPrice p {
-    text-align: center;
-}
+.filterPrice p { text-align: center; }
 
-.filterToggle {
-    display: none;
-}
+.filterToggle { display: none; }
+.applyFilterBtn { display: none; }
 
-/* -------- */
+.removeFilterBtn {
+    width: 100%;
+    background-color: var(--primary-colour);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: var(--inputs-radius);
+    font-size: var(--label-font);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.removeFilterBtn:hover { background-color: var(--primary-light-colour); }
+.removeFilterBtn:active {
+    transform: translateY(2px);
+    box-shadow: 0 12px 35px #8e183b39;
+}
 
 .itemsGrid {
     display: flex;
@@ -172,96 +187,127 @@
     margin: 20px;
 }
 
-/* Mobile */
+/* ============================================================
+   MOBILE (max-width: 768px)
+   ============================================================ */
 @media (max-width: 768px) {
+
     .contentArea {
         position: relative;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 10px;
+        gap: 12px;
     }
 
+    /* Filter pill gomb */
     .filterToggle {
-        display: block;
-        background-color: var(--primary-colour);
-        color: white;
-        border: none;
-        padding: 12px 18px;
-        border-radius: var(--smalldiv-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: calc(100% - 20px);
+        margin: 8px auto 0;
+        background-color: var(--secondary-colour);
+        color: var(--primary-colour);
+        border: 1.5px solid var(--primary-colour);
+        padding: 11px 20px;
+        border-radius: 30px;
         font-size: var(--label-font);
+        font-weight: 600;
         cursor: pointer;
-        margin: 10px auto;
+        letter-spacing: 0.03em;
+        transition: background-color 0.2s ease, color 0.2s ease;
         z-index: 20;
     }
+    .filterToggle:hover {
+        background-color: var(--primary-colour);
+        color: white;
+    }
 
+    /* Panel — inline a gomb alatt, animált */
     .filterPanel {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: calc(100% - 40px);
+        width: calc(100% - 20px);
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
         background-color: white;
-        padding: 20px;
-        border-radius: var(--smalldiv-radius);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        padding: 0 16px;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        border: 1px solid rgba(122, 17, 50, 0.12);
+        animation: none;
+        /* max-height animáció */
+        max-height: 0;
+        overflow: hidden;
         opacity: 0;
-        transform: translateY(-20px);
         pointer-events: none;
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        z-index: 15;
-        margin: 30px 20px;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.3s ease,
+                    padding 0.3s ease;
+        z-index: 100;
     }
 
     .filterPanel.open {
+        max-height: 1200px;
         opacity: 1;
-        transform: translateY(0);
+        padding: 20px 16px 16px;
         pointer-events: auto;
     }
+
+    /* Animáció kikapcsolva mobilon */
+    .filterPanel .filterBlock {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Show Results gomb — csak mobilon */
+    .applyFilterBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        background-color: var(--primary-colour);
+        color: white;
+        border: none;
+        padding: 13px;
+        border-radius: var(--inputs-radius);
+        font-size: var(--label-font);
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        letter-spacing: 0.02em;
+    }
+    .applyFilterBtn:hover { background-color: var(--primary-light-colour); }
+    .applyFilterBtn:active { transform: translateY(1px); }
 
     .itemsGrid {
         margin: 0;
         justify-content: center;
+        width: 100%;
     }
 }
 
-/* --------- */
-
-/* Animation */
+/* ---- Animations ---- */
 @keyframes slideDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-100px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideOutRight {
-    to {
-        opacity: 0;
-        transform: translateX(-40px);
-    }
+    0%   { opacity: 0; transform: translateY(-100px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
-
-.filterBlock:nth-child(3) {
-    animation-delay: 0.30s;
-}
-
-.filterBlock:nth-child(2) {
-    animation-delay: 0.15s;
-}
-
-.filterBlock:nth-child(1) {
-    animation-delay: 0s;
-}
-
-/* ---------- */
+.filterBlock:nth-child(1) { animation-delay: 0s; }
+.filterBlock:nth-child(2) { animation-delay: 0.15s; }
+.filterBlock:nth-child(3) { animation-delay: 0.30s; }

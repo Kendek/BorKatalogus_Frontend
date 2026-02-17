@@ -45,6 +45,18 @@ const CurrentWine = ({ cartIconRef, setShowReview }: CurrentWineProps) => {
   const wine = wines.find(w => w.id === currentWineId);
   const [detailsOpen, setDetailsOpen] = useState(false);
 
+  useEffect(() => {
+  document.body.style.overflow = "hidden";
+  document.body.style.position = "fixed";
+  document.body.style.width = "100%";
+  
+  return () => {
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.width = "";
+  };
+}, []);
+
 
   const handleAddToCart = (addWineToCart: Wine) => {
     setCartItems(prev => {

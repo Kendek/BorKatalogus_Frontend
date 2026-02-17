@@ -241,6 +241,8 @@
 
   .reviewPage {
     height: auto;
+    width: 80%;
+    margin-top: 5vh;
     overflow-y: auto;
   }
 
