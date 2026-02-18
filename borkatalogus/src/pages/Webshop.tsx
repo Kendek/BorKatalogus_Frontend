@@ -129,13 +129,6 @@ const Webshop = ({ cartIconRef }: WebshopProps) => {
               </div>
             </div>
             <button className={style.removeFilterBtn} onClick={Reset}>Remove Filters</button>
-            <button
-              className={style.applyFilterBtn}
-              onClick={() => setOpenFilter(false)}
-            >
-              <i className="fas fa-check"></i>
-              Show Results
-            </button>
           </div>
 
           <div className={style.itemsGrid}>

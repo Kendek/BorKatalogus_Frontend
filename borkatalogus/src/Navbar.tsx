@@ -126,7 +126,7 @@ const Navbar = ({ cartIconRef }: NavbarProps) => {
                 >Login
                 </Link>
                 {role === "Admin" && (<Link to={"/adminaccounts"} className={styles.adminBtn}>Admin</Link>)}
-                {isLoggedIn && (<p><b>Dear</b> {localStorage.getItem("firstName") ? localStorage.getItem("firstName") : "Guest"}!</p>)}
+                {isLoggedIn && role !== "Admin" && (<p><b>Dear</b> {localStorage.getItem("firstName") ? localStorage.getItem("firstName") : "Guest"}!</p>)}
                 {isLoggedIn && (<button className={styles.userLogout} onClick={async () => { await LogoutUser(); setIsLoggedIn(false) }}><i className="fa-solid fa-right-from-bracket"></i></button>)}
                 <div ref={cartIconRef} className={styles.cartIconWrapper}>
                     <Link to="/cart" className={location.pathname === "/cart" || location.pathname === "/checkout" || location.pathname === "/done" ? styles.carticonactive : styles.carticon} onClick={() => { setClikced(false) }}>
