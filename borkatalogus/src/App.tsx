@@ -30,7 +30,6 @@ const App = () => {
     }
   }, []);
 
-
   return (
     <WineContextProvider>
       <BrowserRouter>
@@ -44,10 +43,10 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/done" element={<Done />} />
-          <Route path="/adminaccounts" element={<AdminAccounts/>} />
-          <Route path="/adminGrape" element={<AdminGrape/>} />
-          <Route path="/adminWine" element={<AdminWine/>} />
-          <Route path="/adminWinery" element={<AdminWinery/>} />
+          <Route path="/adminaccounts" element={<AdminAccounts />} />
+          <Route path="/adminGrape" element={<AdminGrape />} />
+          <Route path="/adminWine" element={<AdminWine />} />
+          <Route path="/adminWinery" element={<AdminWinery />} />
         </Routes>
       </BrowserRouter>
     </WineContextProvider>

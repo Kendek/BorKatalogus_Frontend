@@ -55,7 +55,7 @@
   display: flex;
   margin: 0;
   padding: 0;
-  gap: 4px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -247,7 +247,7 @@
     right: 0;
     width: 260px;
     height: calc(100vh - 60px);
-    background-color: var(--secondary-colour);
+    background-color: var(--primary-colour);
     border-left: 1px solid rgba(122, 17, 50, 0.15);
     padding: 2rem 1.25rem;
     gap: 12px;
@@ -268,7 +268,7 @@
     right: 0;
     width: 260px;
     height: calc(100vh - 60px);
-    background-color: var(--secondary-colour);
+    background-color: var(--primary-colour);
     border-left: 1px solid rgba(122, 17, 50, 0.15);
     padding: 2rem 1.25rem;
     gap: 12px;
@@ -285,7 +285,7 @@
     padding: 0.7rem;
     width: 100%;
     border-radius: 10px;
-    color: var(--primary-colour);
+    color: var(--secondary-colour);
   }
 
   .navlinks .pageLink::after,
