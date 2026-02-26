@@ -6,10 +6,11 @@ import styles from "../Kcss/Map.module.css"
 import { GetDbData } from './AdminPages/AdminFetch';
 import type { WineryGetType } from './AdminPages/AdminFetch';
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
+import { duration, easing } from '@mui/material';
 
 
 
-export let area : string | null = ""
+export let area : string | null = null
 
 const Chart = () => {
     const [Winerys, setWinerys] = useState<WineryGetType[]>([])
@@ -18,7 +19,6 @@ const Chart = () => {
     const [SelectedWinery, setSelectedWinery]= useState<WineryGetType>()
 
     useLayoutEffect(() => { 
-        area = null;
         let root = am5.Root.new("chartdiv");
 
         root.setThemes([
@@ -35,8 +35,9 @@ const Chart = () => {
                 paddingLeft: 20,
                 paddingRight: 20,
                 wheelY: "zoom",
-                minZoomLevel: 0.5,
-                maxZoomLevel: 32
+                minZoomLevel: 1,
+                maxZoomLevel: 16,
+                maxPanOut: 0
             })
         );
 
@@ -75,7 +76,9 @@ const Chart = () => {
             })
 
             circle.events.on("click", (e) => {
-                console.log("asd")
+                const dataContext = e["target"]?.["_dataItem"]?.["dataContext"] as { area?: string };
+                area = `${dataContext?.area}`
+                console.log(area)
                 });
 
 
@@ -100,6 +103,7 @@ const Chart = () => {
                 markerSeriesRef.current.data.push({
                     geometry: { type:"Point",  coordinates: [marker.lon, marker.lat]},
                     title:`${marker.name}, ${marker.region}`,
+                    area: `${marker.region}`
                 });
             });
         }
@@ -133,15 +137,22 @@ const Chart = () => {
 
     useEffect(() =>{
 
-
         if(SelectedWinery)
         {
+            chartRef.current.goHome();
+
             chartRef.current.animate({ key: "rotationX", to: -SelectedWinery.lon, duration: 1500, easing: am5.ease.inOut(am5.ease.cubic) });
             chartRef.current.animate({ key: "rotationY", to: -SelectedWinery.lat, duration: 1500, easing: am5.ease.inOut(am5.ease.cubic) });
-            setTimeout(function (){
-                chartRef.current.zoomIn()
 
+            setTimeout(function (){
+                chartRef.current.animate({
+                    key: "zoomLevel",
+                    to: 16,
+                    duration: 1500,
+                    easing: am5.ease.inOut(am5.ease.cubic)
+                })
             },1500)
+
         }
     }, [SelectedWinery])
 
