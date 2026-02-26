@@ -11,7 +11,9 @@ import { duration, easing } from '@mui/material';
 
 
 
-export const [area, setArea]= useState<string | null>(null)
+let area: string | null = null;
+export const getArea = () =>area;
+export const setArea = (val: string|null) => {area =val};
 
 const Chart = () => {
     const navigate = useNavigate();
