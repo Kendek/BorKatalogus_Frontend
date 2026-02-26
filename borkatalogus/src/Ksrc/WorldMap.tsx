@@ -11,7 +11,7 @@ import { duration, easing } from '@mui/material';
 
 
 
-export let area : string | null = null
+export const [area, setArea]= useState<string | null>(null)
 
 const Chart = () => {
     const navigate = useNavigate();
@@ -79,7 +79,8 @@ const Chart = () => {
 
             circle.events.on("click", (e) => {
                 const dataContext = e["target"]?.["_dataItem"]?.["dataContext"] as { area?: string };
-                area = `${dataContext?.area}`
+                if(dataContext.area)
+                    setArea(dataContext?.area)
                 console.log(area)
                 navigate('/webshop');
                 });
@@ -151,10 +152,10 @@ const Chart = () => {
                 chartRef.current.animate({
                     key: "zoomLevel",
                     to: 16,
-                    duration: 1500,
+                    duration: 2500,
                     easing: am5.ease.inOut(am5.ease.cubic)
                 })
-            },1500)
+            },750)
 
         }
     }, [SelectedWinery])
