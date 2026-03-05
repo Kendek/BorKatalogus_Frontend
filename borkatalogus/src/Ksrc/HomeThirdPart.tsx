@@ -1,6 +1,6 @@
-import Rating from "@mui/material/Rating"
+
 import styles from "../Kcss/Home.module.css"
-import { div } from "motion/react-client"
+import { FaGlobeAmericas } from "react-icons/fa";
 
 const HomeThirdPart = () => {
   return (
@@ -12,8 +12,21 @@ const HomeThirdPart = () => {
           </div>
         <div className={styles.HomeThird}>
                 
-            <div className={styles.HomeMapInfo}>
-
+            <div className={`${styles.HomeMapInfo}`}>
+                <h1> <FaGlobeAmericas />Discover the world of wine with us! <FaGlobeAmericas /></h1>
+                <h3>Explore our interactive map to find wineries from around
+                    the globe. Whether you're looking for a local gem or an
+                    international favorite, our map has you covered.
+                    </h3>
+                <div className={styles.LineDecor}></div>
+                <h3>
+                    Click on any winery to learn more about their offerings,
+                    history, and unique characteristics. Start your wine
+                    journey today and uncover the stories behind every
+                    bottle!
+                </h3>
+                <div className={styles.LineDecor}></div>
+                
             </div>
 
             <div className={styles.HomeMapGlobe}>

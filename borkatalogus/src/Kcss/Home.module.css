@@ -278,11 +278,14 @@
     justify-content: center;
 }
 .HomeMapInfo{
+    flex-direction: column;
+    justify-content: start;
     gap: 20px;
     text-align: center;
     color: white;
     text-shadow: 2px 2px black;
     font-size: larger;
+    padding: 20px;
 
 }
 .HomeMapGlobe{
