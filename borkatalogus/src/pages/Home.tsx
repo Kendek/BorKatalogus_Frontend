@@ -3,12 +3,17 @@ import HomeSecondPart from "../Ksrc/HomeSecondPart"
 import { Rating } from '@mui/material';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { FaAngleDoubleDown } from "react-icons/fa";
 
-
+export const ScrollForward = () => {
+  window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+}
 const Home = () => {
   AOS.init({
     duration:1000
   });
+
+
   return (
     <div className={styles.HomeMain}>
 
@@ -22,9 +27,12 @@ const Home = () => {
           <div className={`${styles.LineDecor} ${styles.White}` }></div>
           <h2>Order Now 🛒</h2>
 
-          
         </div>  
       </div>
+     <div className={styles.ScrollDown} onClick={ScrollForward}>
+        <FaAngleDoubleDown className={styles.ScrollIcon}/>
+     </div>
+      {/* <div className={styles.HomeDivider}> </div> */}
       <HomeSecondPart>
         
       </HomeSecondPart>
