@@ -18,6 +18,7 @@
     color: var(--primary-colour);
     align-items: center;
     margin-top: 10px;
+    color: white;
 }
 
 .Search h1 {
@@ -80,4 +81,10 @@
     outline: none;
     border-color: #8B1E3F;
     box-shadow: 0 0 8px rgba(139, 30, 63, 0.3);
+}
+.main{
+        background: radial-gradient(ellipse at 20% 30%, #c4284f 0%, #8a1530 35%, #3d0a18 65%, #1a060e 100%);    
+        padding-bottom: 2rem;
+        overflow-x: hidden;
+        overflow-y: hidden;
 }

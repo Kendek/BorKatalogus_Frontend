@@ -40,7 +40,7 @@ const Chart = () => {
                 wheelY: "zoom",
                 minZoomLevel: 1,
                 maxZoomLevel: 16,
-                maxPanOut: 0
+                maxPanOut: 0,
             })
         );
 
@@ -51,18 +51,21 @@ const Chart = () => {
         let PolygonSeries  = chart.series.push(
             am5map.MapPolygonSeries.new(root,{
                 geoJSON: am5geodata_worldLow,
+                fill: am5.color("#cfa446"),
+
             })
         );
 
         PolygonSeries.mapPolygons.template.setAll({
             tooltipText : "{name}",
-            interactive: true
+            interactive: true,
+            stroke: am5.color("#000000")
         })
         let backgroundSeries = chart.series.unshift(
              am5map.MapPolygonSeries.new(root, {})
         );
         backgroundSeries.mapPolygons.template.setAll({
-            fill: am5.color("#c0bcbc"),
+            fill: am5.color("#2a6283"),
         });
 
         backgroundSeries.data.push({
@@ -186,7 +189,7 @@ const Chart = () => {
     }, [SelectedWinery])
 
   return (
-    <div >
+    <div className={styles.main}>
         <div className={styles.Search}>
             <h1>Search winery:</h1>
             <select  onChange={(e) => ZoomOnSelect(parseInt(e.target.value))} > 

@@ -130,7 +130,7 @@ const AdminWinery = () => {
     }
       
   return (
-      <div>
+      <div className={styles.WineryContainer}>
 
      <div  className={styles.WineMain}>
       <h1 className={styles.AdminTitles}>Winerys</h1>

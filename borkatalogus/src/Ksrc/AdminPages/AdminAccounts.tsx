@@ -63,7 +63,7 @@ const AdminAccounts = () => {
 
   return (
 
-    <div style={{overflow : "hidden"}}>
+    <div className={styles.AdminContainer}style={{overflow : "hidden"}}>
     
    <div  className={styles.WineMain}>
         <h1 className={styles.AdminTitles}>Accounts</h1>
