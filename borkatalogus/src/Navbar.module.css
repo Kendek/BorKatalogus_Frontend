@@ -183,45 +183,47 @@
   box-shadow: 0 4px 16px rgba(139, 30, 63, 0.4);
 }
 
+/* LOGIN — ugyanolyan mint a többi navlink */
 .usericon {
-  color: var(--primary-colour);
+  color: rgba(139, 30, 63);
   font-size: var(--label-font);
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
-  padding: 0.45rem 1.1rem;
+  padding: 0.5rem 1.2rem;
   border-radius: 100px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  border: 1.5px solid rgba(139, 30, 63, 0.35);
-  transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+  border: none;
+  background: none;
+  transition: color 0.22s ease, background-color 0.22s ease;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .usericon:hover {
-  background-color: var(--primary-colour);
-  color: var(--secondary-colour);
-  border-color: var(--primary-colour);
+  color: var(--primary-colour);
+  background-color: rgba(139, 30, 63, 0.06);
 }
 
+/* Bejelentkezve — aktív állapot mint a pageLinkactive */
 .usericonlogin {
-  color: var(--secondary-colour);
-  background-color: var(--primary-colour);
+  color: var(--primary-colour);
   font-size: var(--label-font);
   font-weight: 700;
   text-decoration: none;
-  padding: 0.45rem 1.1rem;
+  padding: 0.5rem 1.2rem;
   border-radius: 100px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  border: 1.5px solid var(--primary-colour);
-  transition: background-color 0.22s ease, box-shadow 0.22s ease;
-  box-shadow: 0 2px 12px rgba(139, 30, 63, 0.3);
+  border: none;
+  background-color: rgba(139, 30, 63, 0.1);
+  transition: background-color 0.22s ease;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .usericonlogin:hover {
-  background-color: var(--primary-light-colour);
-  box-shadow: 0 4px 16px rgba(139, 30, 63, 0.4);
+  background-color: rgba(139, 30, 63, 0.15);
 }
 
 .userLogout {
@@ -293,13 +295,8 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @media screen and (max-width: 768px) {

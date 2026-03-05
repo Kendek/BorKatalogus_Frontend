@@ -82,7 +82,6 @@ const Webshop = ({ cartIconRef }: WebshopProps) => {
     });
   };
 
-
   const RegionCounts = wines.reduce((acc: Record<string, number>, wine) => {
     const region = wine.region.toLowerCase();
     acc[region] = (acc[region] || 0) + 1;
@@ -136,15 +135,29 @@ const Webshop = ({ cartIconRef }: WebshopProps) => {
   }, [currentWineId]);
 
   const sliderSx = {
-    color: '#8B1E3F',
+    color: 'rgba(255, 255, 255, 0.90)',
     '& .MuiSlider-thumb': {
-      backgroundColor: '#8B1E3F',
+      backgroundColor: '#ffffff',
       width: 16,
       height: 16,
-      '&:hover, &.Mui-focusVisible': { boxShadow: '0 0 0 8px rgba(139,30,63,0.1)' },
+      '&:hover, &.Mui-focusVisible': { boxShadow: '0 0 0 8px rgba(255, 255, 255, 0.15)' },
     },
-    '& .MuiSlider-track': { height: 3 },
-    '& .MuiSlider-rail': { backgroundColor: 'rgba(139,30,63,0.15)', opacity: 1, height: 3 }
+    '& .MuiSlider-track': {
+      height: 3,
+      backgroundColor: '#ffffff',
+      borderColor: '#ffffff',
+    },
+    '& .MuiSlider-rail': {
+      backgroundColor: 'rgba(255, 255, 255, 0.25)',
+      opacity: 1,
+      height: 3
+    }
+  };
+
+  const ratingSx = {
+    '& .MuiRating-iconFilled':  { color: '#ffffff' },
+    '& .MuiRating-iconHover':   { color: 'rgba(255, 255, 255, 0.80)' },
+    '& .MuiRating-iconEmpty':   { color: 'rgba(255, 255, 255, 0.30)' },
   };
 
   return (
@@ -233,7 +246,7 @@ const Webshop = ({ cartIconRef }: WebshopProps) => {
                 <Rating
                   value={minRating}
                   onChange={(e, newValue) => setMinRating(prev => prev === newValue ? null : newValue)}
-                  sx={sliderSx}
+                  sx={ratingSx}
                 />
               </div>
             </div>
