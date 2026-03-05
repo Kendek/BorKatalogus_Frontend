@@ -4,6 +4,7 @@ import { Rating } from '@mui/material';
 import 'aos/dist/aos.css';
 import { FaAngleDoubleDown } from "react-icons/fa";
 import AOS from 'aos';
+import HomeThirdPart from "../Ksrc/HomeThirdPart";
 
 export const ScrollForward = () => {
   window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
@@ -31,10 +32,11 @@ AOS.init({
      <div className={styles.ScrollDown} onClick={ScrollForward}>
         <FaAngleDoubleDown className={styles.ScrollIcon}/>
      </div>
-      {/* <div className={styles.HomeDivider}> </div> */}
-      <HomeSecondPart>
-        
-      </HomeSecondPart>
+      <div className={styles.GradientBackground }>
+            <HomeSecondPart/>
+            <HomeThirdPart/>
+      </div>
+
 
     </div>
   )
