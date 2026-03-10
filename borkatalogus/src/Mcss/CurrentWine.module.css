@@ -57,7 +57,7 @@
     position: absolute;
     top: 16px;
     left: 16px;
-    background: transparent;
+    background: white;
     border: 1.5px solid rgba(139, 30, 63, 0.3);
     font-size: 13px;
     font-weight: 600;
@@ -81,11 +81,7 @@
 
 .wineLeftSide {
     flex: 0 0 42%;
-    background: linear-gradient(
-        160deg,
-        rgba(90, 14, 44, 0.30) 0%,
-        rgba(30, 5, 15, 0.55) 100%
-    );
+    background: linear-gradient(160deg, #5a0e2c 65%, #8b2a4a 35%);
     display: flex;
     align-items: center;
     justify-content: center;

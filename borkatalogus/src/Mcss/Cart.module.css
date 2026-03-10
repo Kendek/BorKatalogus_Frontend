@@ -1,13 +1,12 @@
 .mainDiv {
     margin: 0;
     padding: 20px;
-    background-color: var(--secondary-colour);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     z-index: 1;
 }
 

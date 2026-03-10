@@ -139,7 +139,7 @@
 }
 
 .carticon {
-  color: rgba(139, 30, 63, 0.8);
+  color: rgba(139, 30, 63);
   font-size: var(--label-font);
   text-decoration: none;
   padding: 0.5rem 0.8rem;
