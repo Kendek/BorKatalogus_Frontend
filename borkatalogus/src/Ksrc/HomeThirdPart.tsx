@@ -5,7 +5,7 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
 import styles from "../Kcss/Home.module.css"
-import { FaGlobeAmericas } from "react-icons/fa";
+import 'aos/dist/aos.css';
 
 const HomeThirdPart = () => {
   useLayoutEffect(() => { 
@@ -17,17 +17,17 @@ const HomeThirdPart = () => {
   
           var chart = root.container.children.push(
               am5map.MapChart.new(root, {
-                  panX: "rotateX",
-                  panY: "rotateY",
                   projection: am5map.geoOrthographic(),
                   paddingBottom: 20,
                   paddingTop: 20,
                   paddingLeft: 20,
                   paddingRight: 20,
-                  wheelY: "zoom",
-                  minZoomLevel: 1,
-                  maxZoomLevel: 16,
-                  maxPanOut: 0,
+                  panX: "none",
+                  panY: "none",
+                  wheelY: "none",
+                  wheelX: "none",
+                  pinchZoom: false,
+
               })
           );
           var gradient = am5.RadialGradient.new(root, {
@@ -59,7 +59,7 @@ const HomeThirdPart = () => {
   
           PolygonSeries.mapPolygons.template.setAll({
               tooltipText : "{name}",
-              interactive: true,
+              interactive: false,
               stroke: am5.color("#000000")
           })
           let backgroundSeries = chart.series.unshift(
