@@ -105,8 +105,8 @@ const FillDisplayBoxWithInfo = () => {
             )}
 
             <div className={styles.InfoBoxActions}>
-                <button className={styles.InfoBoxPrimaryBtn} onClick={() => NavigateToWebshop(clickedMarker.area)}>
-                    Check out Wines from this Winery <i className="fa-solid fa-cart-shopping"></i>
+                <button className={styles.InfoBoxShopBtn} onClick={() => NavigateToWebshop(clickedMarker.area)}>
+                    Check out Wines from this Region <i className="fa-solid fa-cart-shopping"></i>
                 </button>
                 <button className={styles.InfoBoxSecondaryBtn} onClick={() => sethideOrShow(false)}>
                     Close
