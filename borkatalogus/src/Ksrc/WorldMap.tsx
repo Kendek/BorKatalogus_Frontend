@@ -293,6 +293,11 @@ const FillDisplayBoxWithInfo = () => {
 
         }
     }, [SelectedWinery])
+    
+    useEffect(() => {
+    document.body.style.overflow = location.pathname== "/map" ? "hidden" : "auto";
+    return () => { document.body.style.overflow = "auto"; };
+  }, [location.pathname]);  
 
   return (
     <div className={styles.main}>
